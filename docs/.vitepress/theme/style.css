@@ -1,0 +1,169 @@
+/* ============================================
+   全局样式覆盖 & 自定义主题
+   ============================================ */
+
+/* 字体 */
+:root {
+  --vp-font-family-base: "Inter", "Noto Sans SC", system-ui, sans-serif;
+  --vp-font-family-mono: "Fira Code", "JetBrains Mono", monospace;
+}
+
+/* ── 亮色主题 ── */
+:root {
+  --vp-c-brand-1: #7c6afb;
+  --vp-c-brand-2: #6456e0;
+  --vp-c-brand-3: #5346cc;
+  --vp-c-brand-soft: rgba(124, 106, 251, 0.14);
+
+  --blog-gradient: linear-gradient(135deg, #7c6afb 0%, #5eead4 100%);
+  --blog-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ── 暗色主题 ── */
+.dark {
+  --vp-c-bg: #0d0d1a;
+  --vp-c-bg-soft: #13131f;
+  --vp-c-bg-mute: #1a1a2e;
+  --vp-c-brand-1: #9d8eff;
+  --vp-c-brand-2: #7c6afb;
+  --vp-c-brand-3: #6456e0;
+  --vp-c-brand-soft: rgba(157, 142, 255, 0.16);
+
+  --blog-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ── 导航栏 ── */
+.VPNav {
+  backdrop-filter: blur(16px) saturate(180%);
+  background: rgba(255, 255, 255, 0.85) !important;
+}
+.dark .VPNav {
+  background: rgba(13, 13, 26, 0.85) !important;
+}
+
+/* ── 首页 Hero ── */
+.VPHero .name {
+  background: var(--blog-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.VPHero .tagline {
+  font-size: 1.15rem;
+  color: var(--vp-c-text-2);
+}
+
+/* Hero 按钮渐变 */
+.VPButton.brand {
+  background: var(--blog-gradient) !important;
+  border-color: transparent !important;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+.VPButton.brand:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ── Feature 卡片 ── */
+.VPFeature {
+  border-radius: 14px !important;
+  box-shadow: var(--blog-card-shadow);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s !important;
+  border: 1px solid var(--vp-c-divider) !important;
+}
+.VPFeature:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 36px rgba(124, 106, 251, 0.18) !important;
+}
+
+/* ── 文章内容 ── */
+.vp-doc h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.vp-doc h2 {
+  border-top: 1px solid var(--vp-c-divider);
+  padding-top: 24px;
+}
+
+/* ── 代码块 ── */
+.vp-doc div[class*="language-"] {
+  border-radius: 10px;
+  box-shadow: var(--blog-card-shadow);
+}
+
+/* ── 侧边栏 ── */
+.VPSidebarItem .text {
+  transition: color 0.2s;
+}
+.VPSidebarItem:hover .text,
+.VPSidebarItem.is-active .text {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* ── 标签样式（Badge） ── */
+.vp-badge {
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* ── 滚动条美化 ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-brand-soft);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-2);
+}
+
+/* ── 选中文字 ── */
+::selection {
+  background: var(--vp-c-brand-soft);
+}
+
+/* ── 过渡动画 ── */
+.vp-doc * {
+  transition: color 0.2s;
+}
+
+/* ── 页脚 ── */
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* ── 代码块行号 ── */
+.vp-doc .line-numbers-wrapper {
+  color: var(--vp-c-text-3);
+}
+
+/* ── Table ── */
+.vp-doc table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--blog-card-shadow);
+}
+.vp-doc th {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+/* ── Blockquote ── */
+.vp-doc blockquote {
+  border-left: 4px solid var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  border-radius: 0 8px 8px 0;
+}

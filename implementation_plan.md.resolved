@@ -1,0 +1,181 @@
+# 个人知识库博客系统（2026版）实施计划
+
+基于 PRD，构建一套 **完全自动化的个人知识库博客系统**。核心体验：**粘贴一篇文章或描述 → 自动分析分类 → 自动创建目录/tag → 自动归档发布**。
+
+---
+
+## 技术栈
+
+| 层次 | 技术选型 |
+|------|---------|
+| 静态站点生成 | **VitePress** |
+| 代码托管 & CI | **GitHub + GitHub Actions** |
+| 部署 | **Cloudflare Pages** |
+| 搜索 | **Pagefind**（本地，无需服务器） |
+| 评论 | **Giscus**（基于 GitHub Discussions） |
+| RSS & SEO | **vitepress-plugin-rss** + 内置 sitemap |
+| 智能归档 CLI | **Node.js 脚本**（支持 AI 内容分析） |
+
+---
+
+## Proposed Changes
+
+### 项目根目录（`e:\中研院\my-blog-knowledge`）
+
+#### [NEW] package.json
+VitePress 项目依赖，包含所有 npm scripts：
+- `dev` / `build` / `preview`
+- `new` — 交互式创建文章
+- `archive` — **核心：粘贴内容 → 智能归档**
+- `sidebar` — 重新生成侧边栏
+
+#### [NEW] .gitignore
+
+---
+
+### VitePress 配置（`.vitepress/`）
+
+#### [NEW] .vitepress/config.ts
+主配置文件，包含：
+- 站点 title / description / lang
+- 自定义主题颜色（深色模式优化）
+- Pagefind 搜索集成
+- RSS plugin 配置
+- Sitemap 配置
+- 自动导入 sidebar（从 `docs/` 扫描）
+
+#### [NEW] .vitepress/theme/index.ts
+自定义主题入口，注册 Giscus 评论、全局样式覆盖
+
+#### [NEW] .vitepress/theme/MyLayout.vue
+自定义页面布局，在文章底部自动插入 Giscus 评论组件
+
+#### [NEW] .vitepress/theme/style.css
+自定义样式：
+- 颜色系统（支持 light/dark）
+- 字体（Inter / Noto Sans SC）
+- 首页 Hero 动画
+- 文章卡片样式
+
+---
+
+### 文档结构（`docs/`）
+
+#### [NEW] docs/index.md
+精美的首页（Hero + 统计 + 快速导航）
+
+#### [NEW] docs/javascript/index.md
+JavaScript 目录页（示例分类）
+
+#### [NEW] docs/javascript/event-loop.md
+示例文章
+
+#### [NEW] docs/react/index.md
+React 目录页
+
+#### [NEW] docs/vue/index.md
+Vue 目录页
+
+#### [NEW] docs/engineering/index.md
+工程化目录页
+
+#### [NEW] docs/interview/index.md
+面试题目录页
+
+---
+
+### 自动化脚本（`scripts/`）
+
+#### [NEW] scripts/generateSidebar.js
+自动扫描 `docs/` 所有 [.md](file:///e:/%E4%B8%AD%E7%A0%94%E9%99%A2/my-blog-knowledge/prd.md) 文件 → 生成结构化 sidebar 配置
+
+#### [NEW] scripts/new-post.js
+交互式 CLI 工具：
+```
+npm run new "文章标题" [分类]
+```
+自动生成带完整 frontmatter 的 Markdown 文件
+
+#### [NEW] scripts/auto-archive.js
+**🌟 核心功能**：智能归档工具
+```
+npm run archive
+```
+工作流程：
+1. 读取 `stdin` 或剪贴板中的文章内容/描述
+2. 用关键词分析自动判断所属分类（javascript/react/vue/...）
+3. 自动提取或推断 tags
+4. 若分类目录不存在 → **自动创建**
+5. 若 tag 不在已知列表 → **自动添加**并更新 tag 索引
+6. 生成合规的 frontmatter（title/date/tags/category）
+7. 写入对应目录的 [.md](file:///e:/%E4%B8%AD%E7%A0%94%E9%99%A2/my-blog-knowledge/prd.md) 文件
+8. 自动更新 sidebar
+
+> [!IMPORTANT]
+> `auto-archive.js` 是整个系统的核心，支持两种使用方式：
+> - **方式 A**：`echo "文章内容" | npm run archive`（通过管道传入）
+> - **方式 B**：`npm run archive` 然后交互式输入（支持多行粘贴）
+
+---
+
+### GitHub Actions（`.github/workflows/`）
+
+#### [NEW] .github/workflows/deploy.yml
+推送到 `main` 分支自动触发：
+1. `npm ci`
+2. `node scripts/generateSidebar.js`
+3. `npm run build`（含 Pagefind 索引生成）
+4. 部署到 Cloudflare Pages
+
+---
+
+### Tags 索引
+
+#### [NEW] docs/tags/index.md
+所有 tags 的汇总页面，由脚本维护，支持按 tag 筛选文章列表
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Giscus 评论**：需要用户在 [giscus.app](https://giscus.app) 完成配置后，将 `repo`、`repoId`、`category`、`categoryId` 填入 `.vitepress/theme/MyLayout.vue`。配置前评论区会显示占位提示。
+
+> [!IMPORTANT]
+> **Cloudflare Pages 部署**：需要用户在 Cloudflare Dashboard 中连接 GitHub repo，构建命令为 `npm run build`，输出目录为 `.vitepress/dist`。GitHub Actions 中的 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID` 需要在 repo settings → secrets 中配置。
+
+> [!NOTE]
+> **auto-archive 的 AI 能力**：当前版本使用**本地关键词匹配规则**进行分类（无需 API Key）。如需更智能的 AI 分析，可后续接入 OpenAI API（脚本已预留接口）。
+
+---
+
+## Verification Plan
+
+### 本地自动化测试
+
+```bash
+# 1. 安装依赖
+cd e:\中研院\my-blog-knowledge
+npm install
+
+# 2. 测试智能归档脚本（核心功能验证）
+echo "这篇文章介绍了 Vue3 的 Composition API 和响应式原理，包括 ref、reactive、computed 的使用方法" | node scripts/auto-archive.js
+
+# 3. 验证是否自动创建了文件
+ls docs/vue/
+
+# 4. 生成 sidebar
+node scripts/generateSidebar.js
+
+# 5. 启动本地开发服务器
+npm run dev
+# 浏览器访问 http://localhost:5173 验证页面效果
+```
+
+### 手动验证清单
+
+1. **首页视觉**：访问 `http://localhost:5173`，验证 Hero 区域动画、分类导航、暗黑模式切换
+2. **文章归档**：执行 `npm run archive`，粘贴一段技术文章，检查是否正确创建文件并分类
+3. **侧边栏导航**：验证左侧 sidebar 自动列出所有文章，点击可跳转
+4. **搜索功能**：执行 `npm run build` 后，验证 Pagefind 搜索可正常使用
+5. **暗黑模式**：切换暗黑模式，验证颜色系统一致性
