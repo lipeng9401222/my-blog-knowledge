@@ -31,7 +31,8 @@ jobs:
           cache: "npm"
 
       - name: 安装依赖
-        run: npm ci
+        # 确保在任何环境变量/全局 npm 配置下都安装 devDependencies（VitePress 在 devDependencies 里）
+        run: npm ci --include=dev
 
       - name: 构建站点
         run: npm run sidebar && npm run build
