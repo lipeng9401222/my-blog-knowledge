@@ -23,7 +23,7 @@ export default defineConfig({
       { text: 'Vue', link: '/vue/' }
     ],
 
-    // 侧边栏（自动生成）
+    // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
     sidebar: {
       "/engineering/": [
             {
@@ -77,55 +77,10 @@ export default defineConfig({
             }
       ]
 },
-    
-          ]
-        }
-      ],
-      "/react/": [
-        {
-          "text": "React",
-          "items": [
-            {
-              "text": "React Hooks 性能优化指南",
-              "link": "/react/react-hooks-"
-            }
-          ]
-        }
-      ],
-      "/vue/": [
-        {
-          "text": "Vue",
-          "items": [
-            {
-              "text": "Vue3 Composition API 深入解析",
-              "link": "/vue/vue3-composition-api-"
-            }
-          ]
-        }
-      ],
-      "/engineering/": [
-        {
-          "text": "Engineering",
-          "items": []
-        }
-      ],
-      "/performance/": [
-        {
-          "text": "Performance",
-          "items": []
-        }
-      ],
-      "/interview/": [
-        {
-          "text": "Interview",
-          "items": []
-        }
-      ]
-    },
 
     // 社交链接
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yourusername/frontend-knowledge-base' }
+      { icon: 'github', link: 'https://github.com/lipeng9401222/my-blog-knowledge' }
     ],
 
     // 搜索
@@ -161,7 +116,7 @@ export default defineConfig({
 
     // 编辑链接
     editLink: {
-      pattern: 'https://github.com/yourusername/frontend-knowledge-base/edit/main/docs/:path',
+      pattern: 'https://github.com/lipeng9401222/my-blog-knowledge/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页'
     },
 
@@ -200,7 +155,7 @@ export default defineConfig({
 
   // Head 配置
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/my-blog-knowledge/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],

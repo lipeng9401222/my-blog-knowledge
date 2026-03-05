@@ -115,29 +115,75 @@ function generateSidebar() {
 // ============================================================
 // 更新 config.ts
 // ============================================================
+
+// 用括号计数法找到 key: { ... } 的完整范围
+function findBlockRange(content, key) {
+  const startPattern = new RegExp(`${key}:\\s*\\{`)
+  const match = content.match(startPattern)
+  if (!match) return null
+
+  const startIdx = match.index
+  const braceStart = content.indexOf('{', startIdx + key.length)
+  let depth = 0
+  let endIdx = braceStart
+
+  for (let i = braceStart; i < content.length; i++) {
+    if (content[i] === '{') depth++
+    if (content[i] === '}') depth--
+    if (depth === 0) {
+      endIdx = i
+      break
+    }
+  }
+
+  return { start: startIdx, end: endIdx + 1 }
+}
+
+// 用括号计数法找到 key: [ ... ] 的完整范围
+function findArrayRange(content, key) {
+  const startPattern = new RegExp(`${key}:\\s*\\[`)
+  const match = content.match(startPattern)
+  if (!match) return null
+
+  const startIdx = match.index
+  const bracketStart = content.indexOf('[', startIdx + key.length)
+  let depth = 0
+  let endIdx = bracketStart
+
+  for (let i = bracketStart; i < content.length; i++) {
+    if (content[i] === '[') depth++
+    if (content[i] === ']') depth--
+    if (depth === 0) {
+      endIdx = i
+      break
+    }
+  }
+
+  return { start: startIdx, end: endIdx + 1 }
+}
+
 function updateConfigFile() {
   const configPath = path.join(docsDir, '.vitepress', 'config.ts')
   let config = fs.readFileSync(configPath, 'utf-8')
 
   const { sidebar, categories } = generateSidebar()
-  const sidebarJson = JSON.stringify(sidebar, null, 6)
 
-  // 替换 sidebar 配置
-  const sidebarRegex = /sidebar:\s*\{[\s\S]*?\n\s*\},?\s*\n/
-  if (sidebarRegex.test(config)) {
-    config = config.replace(sidebarRegex, `sidebar: ${sidebarJson},\n    \n`)
+  // 1. 替换 sidebar
+  const sidebarRange = findBlockRange(config, 'sidebar')
+  if (sidebarRange) {
+    const sidebarJson = JSON.stringify(sidebar, null, 6)
+    config = config.slice(0, sidebarRange.start) + `sidebar: ${sidebarJson}` + config.slice(sidebarRange.end)
   }
 
-  // 同步更新 nav（自动生成）
+  // 2. 替换 nav
   const navItems = [
     `{ text: '首页', link: '/' }`,
     ...categories.map(cat => `{ text: '${getDisplayName(cat)}', link: '/${cat}/' }`)
   ]
-  const navStr = `nav: [\n      ${navItems.join(',\n      ')}\n    ]`
-
-  const navRegex = /nav:\s*\[[\s\S]*?\]/
-  if (navRegex.test(config)) {
-    config = config.replace(navRegex, navStr)
+  const navRange = findArrayRange(config, 'nav')
+  if (navRange) {
+    const navStr = `nav: [\n      ${navItems.join(',\n      ')}\n    ]`
+    config = config.slice(0, navRange.start) + navStr + config.slice(navRange.end)
   }
 
   fs.writeFileSync(configPath, config, 'utf-8')

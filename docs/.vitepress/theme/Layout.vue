@@ -27,7 +27,7 @@ function loadGiscus() {
   const script = document.createElement("script");
   script.src = "https://giscus.app/client.js";
   // ⚠️ 使用前请到 https://giscus.app 配置你的仓库，替换下面 3 个值
-  script.setAttribute("data-repo", "YOUR_USERNAME/my-blog-knowledge");
+  script.setAttribute("data-repo", "lipeng9401222/my-blog-knowledge");
   script.setAttribute("data-repo-id", "YOUR_REPO_ID");
   script.setAttribute("data-category", "General");
   script.setAttribute("data-category-id", "YOUR_CATEGORY_ID");

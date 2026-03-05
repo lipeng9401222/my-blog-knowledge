@@ -12,7 +12,7 @@ hero:
       link: /javascript/
     - theme: alt
       text: GitHub
-      link: https://github.com/YOUR_USERNAME/my-blog-knowledge
+      link: https://github.com/lipeng9401222/my-blog-knowledge
 
 features:
   - icon: ⚡
