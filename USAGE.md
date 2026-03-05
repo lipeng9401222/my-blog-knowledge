@@ -1,426 +1,309 @@
-# 使用指南
+# 📖 前端知识库 · 使用指南
 
-本文档详细介绍如何使用博客系统的各项功能。
+> **一句话总结**：写 Markdown → `npm run publish` → 自动部署上线
 
-## 🌟 核心功能：智能归档
+---
 
-这是本系统最强大的功能！只需粘贴文章内容，系统会自动完成所有工作。
+## 🚀 快速开始
 
-### 使用方法
+### 本地开发
 
-**方式一：交互式输入**
+```bash
+# 安装依赖（首次）
+npm install
+
+# 启动本地预览
+npm run dev
+# 访问 http://localhost:5173
+```
+
+---
+
+## ✍️ 日常写作流程（推荐）
+
+### 方式一：智能归档（推荐）
+
+直接粘贴已有文章内容，脚本**自动识别分类**、**自动提取标签**、**自动创建目录**：
 
 ```bash
 npm run archive
 ```
 
-然后粘贴你的文章内容，完成后按：
-- Mac/Linux: `Ctrl + D`
-- Windows: `Ctrl + Z` 然后 `Enter`
+运行后粘贴你的 Markdown 内容，按 `Ctrl+Z`（Windows）或 `Ctrl+D`（Mac/Linux）结束输入。
 
-**方式二：从文件读取**
+**效果示例：**
 
-```bash
-cat article.md | npm run archive
+```
+🤖 智能归档系统 v2.0
+
+📂 已有分类: engineering | interview | javascript | performance | react | vue
+
+📋 请粘贴文章内容...
+
+📂 匹配分类: "vue" (置信度: 8)
+✅ 文章归档成功!
+   📁 路径: docs/vue/composition-api-deep-dive.md
+   📂 分类: vue
+   📝 标题: Vue3 Composition API 深入解析
+   🏷️  标签: vue, vue3, composition api, reactive, ref
 ```
 
-**方式三：直接输入**
+**智能归档特性：**
+
+- ✅ 自动扫描 `docs/` 下所有已有分类
+- ✅ 基于关键词权重匹配最佳分类
+- ✅ **如果内容不属于已有分类，自动创建新分类目录**
+- ✅ 自动从文章标题、正文、h2/h3 标题中提取标签
+- ✅ 自动更新侧边栏
+
+---
+
+### 方式二：新建空文章
 
 ```bash
-echo "# Vue3 响应式原理
-
-Vue3 使用 Proxy 实现响应式系统..." | npm run archive
+npm run new
+# 或者指定标题和分类
+npm run new "React 18 并发特性" react
 ```
 
-### 自动化流程
+**交互式提示：**
 
-系统会自动：
+```
+📝 文章标题: React 18 并发特性
+📂 分类列表: javascript | react | vue | engineering | browser | performance | css | interview | nodejs
+📂 选择分类 (默认: javascript): react
 
-1. **分析分类**：根据内容关键词判断所属分类
-   - 检测到 `react`、`hooks`、`jsx` → React 分类
-   - 检测到 `vue`、`composition api` → Vue 分类
-   - 检测到 `webpack`、`vite` → 工程化分类
-   - 等等...
+✅ 文章已创建: docs/react/react-18.md
+```
 
-2. **提取标签**：自动识别技术关键词作为标签
+---
 
-3. **创建目录**：如果分类目录不存在，自动创建
+### 方式三：直接创建文件
 
-4. **生成文件**：
-   - 自动生成规范的 frontmatter
-   - 提取标题
-   - 格式化内容
-
-5. **更新导航**：自动更新侧边栏配置
-
-### 示例
-
-假设你粘贴了这段内容：
+在对应目录下新建 `.md` 文件，加上 frontmatter：
 
 ```markdown
-# React Hooks 最佳实践
+---
+title: 你的文章标题
+date: 2026-03-05
+category: javascript
+tags:
+  - javascript
+  - es6
+description: 文章简介
+---
 
-React Hooks 是 React 16.8 引入的新特性，让我们可以在函数组件中使用状态和其他 React 特性。
+# 你的文章标题
 
-## useState
-
-useState 是最常用的 Hook...
+文章内容...
 ```
 
-系统会自动：
-- 识别为 React 分类
-- 提取标签：`react`, `hooks`
-- 创建文件：`docs/react/react-hooks-最佳实践.md`
-- 生成完整的 frontmatter
-- 更新侧边栏
+---
 
-## 📝 手动创建文章
+## 📤 发布流程
 
-如果你想手动指定分类和文件名：
-
-```bash
-npm run new <分类>/<文件名>
-```
-
-### 示例
-
-```bash
-# 创建 JavaScript 分类下的文章
-npm run new javascript/promise
-
-# 创建 React 分类下的文章
-npm run new react/hooks-guide
-
-# 创建 Vue 分类下的文章
-npm run new vue/composition-api
-```
-
-### 可用分类
-
-- `javascript` - JavaScript 相关
-- `react` - React 相关
-- `vue` - Vue 相关
-- `engineering` - 工程化相关
-- `performance` - 性能优化相关
-- `interview` - 面试题相关
-
-## 🚀 发布文章
-
-### 方式一：使用发布脚本
+### 一键发布（推荐）
 
 ```bash
 npm run publish
+# 或者指定提交信息
+npm run publish "新增：React 18 并发特性详解"
 ```
 
-这会自动执行：
-1. 更新侧边栏配置
-2. Git add
-3. Git commit
-4. Git push
+执行流程：
 
-### 方式二：手动发布
+1. 自动更新侧边栏
+2. `git add .`
+3. `git commit`
+4. `git push`
+5. GitHub Actions 自动构建 + 部署（约 2 分钟）
+
+### 手动发布
 
 ```bash
+# 更新侧边栏
+npm run sidebar
+
+# 提交推送
 git add .
-git commit -m "新增文章：React Hooks 最佳实践"
+git commit -m "新增文章：xxx"
 git push
 ```
 
-推送后，GitHub Actions 会自动：
-1. 安装依赖
-2. 生成侧边栏
-3. 构建站点
-4. 部署到 Cloudflare Pages
-
-## 🔍 本地预览
-
-### 开发模式
-
-```bash
-npm run dev
-```
-
-访问 http://localhost:5173
-
-特点：
-- 热更新
-- 快速刷新
-- 实时预览
-
-### 生产预览
-
-```bash
-npm run build
-npm run preview
-```
-
-这会构建生产版本并在本地预览，包含：
-- 搜索索引
-- 优化后的资源
-- 完整功能
-
-## 📂 文章格式
-
-### Frontmatter 说明
-
-每篇文章开头的 frontmatter 包含元数据：
-
-```yaml
 ---
-title: 文章标题              # 必需
-date: 2026-03-05            # 必需，格式：YYYY-MM-DD
-category: javascript        # 必需，所属分类
-tags:                       # 必需，标签列表
-  - javascript
-  - async
-description: 文章简介       # 可选
+
+## 📂 目录结构
+
+```
+my-blog-knowledge/
+├── docs/
+│   ├── .vitepress/
+│   │   ├── config.ts          # 站点配置（sidebar 自动生成，勿手动改）
+│   │   └── theme/
+│   │       ├── Layout.vue     # 评论系统集成
+│   │       └── style.css      # 自定义样式
+│   ├── index.md               # 首页
+│   ├── javascript/            # JavaScript 分类
+│   ├── react/                 # React 分类
+│   ├── vue/                   # Vue 分类
+│   ├── engineering/           # 工程化分类
+│   ├── performance/           # 性能优化分类
+│   └── interview/             # 面试题分类
+│
+├── scripts/
+│   ├── auto-archive.js        # 智能归档脚本 ⭐
+│   ├── generate-sidebar.js    # 侧边栏自动生成
+│   ├── new-post.js            # 新建文章
+│   └── publish.js             # 一键发布
+│
+├── .github/workflows/
+│   └── deploy.yml             # GitHub Actions 自动部署
+│
+└── package.json
+```
+
 ---
-```
 
-使用 `npm run archive` 时，这些会自动生成！
+## 🏷️ 新增分类
 
-### Markdown 语法
-
-支持标准 Markdown 和扩展语法：
-
-#### 代码块
-
-````markdown
-```javascript
-const greeting = 'Hello World'
-console.log(greeting)
-```
-````
-
-#### 提示框
-
-```markdown
-::: tip 提示
-这是一个提示
-:::
-
-::: warning 警告
-这是一个警告
-:::
-
-::: danger 危险
-这是一个危险提示
-:::
-```
-
-#### 代码组
-
-````markdown
-::: code-group
-```javascript [JavaScript]
-console.log('Hello')
-```
-
-```typescript [TypeScript]
-console.log('Hello' as string)
-```
-:::
-````
-
-## 🎨 自定义配置
-
-### 修改站点信息
-
-编辑 `.vitepress/config.ts`：
-
-```typescript
-export default defineConfig({
-  title: '你的站点名称',
-  description: '你的站点描述',
-  // ...
-})
-```
-
-### 修改导航栏
-
-编辑 `.vitepress/config.ts` 中的 `nav`：
-
-```typescript
-nav: [
-  { text: '首页', link: '/' },
-  { text: 'JavaScript', link: '/javascript/' },
-  // 添加更多导航项...
-]
-```
-
-### 修改主题颜色
-
-编辑 `.vitepress/theme/style.css`：
-
-```css
-:root {
-  --vp-c-brand-1: #3eaf7c;  /* 主色调 */
-  --vp-c-brand-2: #42b883;  /* 次要色 */
-  /* ... */
-}
-```
-
-### 添加新分类
-
-1. 在 `scripts/auto-archive.js` 中添加分类关键词：
-
-```javascript
-const categoryKeywords = {
-  // 现有分类...
-  
-  // 新分类
-  typescript: ['typescript', 'ts', 'type', '类型'],
-}
-```
-
-2. 在 `.vitepress/config.ts` 中添加导航：
-
-```typescript
-nav: [
-  // 现有导航...
-  { text: 'TypeScript', link: '/typescript/' }
-]
-```
-
-3. 创建分类目录：
+**无需任何配置**，直接在 `docs/` 下建目录即可：
 
 ```bash
 mkdir docs/typescript
-echo "# TypeScript" > docs/typescript/index.md
 ```
 
-## 🔧 维护操作
+或者直接用智能归档——当文章内容匹配不到已有分类时，**自动创建新分类**。
 
-### 重新生成侧边栏
+下次运行 `npm run sidebar` 或 `npm run publish` 时，新分类会自动出现在导航栏和侧边栏。
 
-如果侧边栏显示不正确：
+---
+
+## 💬 评论系统配置（Giscus）
+
+评论系统使用 [Giscus](https://giscus.app)，基于 GitHub Discussions，**完全免费**。
+
+### 配置步骤
+
+**1. 开启 GitHub Discussions**
+
+- 进入仓库 Settings → Features → 勾选 **Discussions**
+
+**2. 获取 Giscus 配置**
+
+- 访问 https://giscus.app/zh-CN
+- 仓库填：`lipeng9401222/my-blog-knowledge`
+- 页面底部会生成 `data-repo-id` 和 `data-category-id`
+
+**3. 更新代码**
+
+编辑 `docs/.vitepress/theme/Layout.vue`，替换以下 3 个值：
+
+```javascript
+script.setAttribute("data-repo", "lipeng9401222/my-blog-knowledge"); // ✅ 已配置
+script.setAttribute("data-repo-id", "YOUR_REPO_ID"); // ← 替换为你的 repo-id
+script.setAttribute("data-category-id", "YOUR_CATEGORY_ID"); // ← 替换为你的 category-id
+```
+
+**4. 关闭某篇文章的评论**
+
+在文章 frontmatter 中加：
+
+```markdown
+---
+comment: false
+---
+```
+
+---
+
+## 🌐 在线部署
+
+### GitHub Pages（已配置）
+
+- 每次 `git push` 到 `main` 分支自动触发
+- 查看部署进度：https://github.com/lipeng9401222/my-blog-knowledge/actions
+- 线上地址：**https://lipeng9401222.github.io/my-blog-knowledge/**
+
+### 启用 GitHub Pages
+
+1. 进入 https://github.com/lipeng9401222/my-blog-knowledge/settings/pages
+2. Source 选择 **"GitHub Actions"**
+3. 保存
+
+### 使用自定义域名（可选）
+
+1. 修改 `docs/.vitepress/config.ts`：
+
+   ```typescript
+   base: '/',  // 改为 /
+   ```
+
+2. 在 `docs/public/` 下新建 `CNAME` 文件：
+
+   ```
+   your-domain.com
+   ```
+
+3. 在域名 DNS 添加 CNAME 记录指向 `lipeng9401222.github.io`
+
+---
+
+## 🛠️ NPM 命令速查
+
+| 命令              | 说明                         |
+| ----------------- | ---------------------------- |
+| `npm run dev`     | 本地开发预览                 |
+| `npm run new`     | 交互式新建文章               |
+| `npm run archive` | 智能归档（粘贴内容自动分类） |
+| `npm run sidebar` | 重新生成侧边栏               |
+| `npm run publish` | 一键提交 + 推送 + 自动部署   |
+| `npm run build`   | 本地构建（生产环境）         |
+| `npm run preview` | 预览构建产物                 |
+
+---
+
+## 📝 Frontmatter 字段说明
+
+```markdown
+---
+title: 文章标题 # 必填
+date: 2026-03-05 # 发布日期，用于侧边栏排序
+category: javascript # 分类（对应 docs/ 下的目录名）
+tags: # 标签列表
+  - javascript
+  - es6
+description: 文章简介 # SEO 描述
+comment: true # 是否开启评论，默认 true（false 关闭）
+---
+```
+
+---
+
+## ❓ 常见问题
+
+**Q: 侧边栏没有更新？**
 
 ```bash
 npm run sidebar
 ```
 
-### 清理缓存
+**Q: 本地能看到文章但线上没有？**
 
-```bash
-rm -rf .vitepress/cache
-rm -rf .vitepress/dist
-```
+- 检查 GitHub Actions 是否运行成功：https://github.com/lipeng9401222/my-blog-knowledge/actions
+- 确认 `docs/.vitepress/config.ts` 中的 `base` 设置正确
 
-### 更新依赖
+**Q: 评论不显示？**
 
-```bash
-npm update
-```
+- 确认仓库已开启 Discussions
+- 确认 Layout.vue 中的 `data-repo-id` 和 `data-category-id` 已替换为真实值
+- 确认仓库是 Public
 
-## 📊 内容管理
+**Q: 如何删除文章？**
 
-### 查看所有文章
+- 直接删除对应 `.md` 文件
+- 运行 `npm run sidebar` 更新导航
+- `npm run publish` 推送
 
-```bash
-# Linux/Mac
-find docs -name "*.md" -not -path "*/node_modules/*"
+**Q: 新增分类后导航栏没显示？**
 
-# Windows PowerShell
-Get-ChildItem -Path docs -Filter *.md -Recurse
-```
-
-### 搜索文章内容
-
-```bash
-# Linux/Mac
-grep -r "关键词" docs/
-
-# Windows PowerShell
-Select-String -Path docs\*.md -Pattern "关键词" -Recurse
-```
-
-### 统计文章数量
-
-```bash
-# Linux/Mac
-find docs -name "*.md" -not -name "index.md" | wc -l
-
-# Windows PowerShell
-(Get-ChildItem -Path docs -Filter *.md -Recurse | Where-Object { $_.Name -ne "index.md" }).Count
-```
-
-## 💡 最佳实践
-
-### 1. 文章命名
-
-- 使用小写字母
-- 用连字符分隔单词
-- 避免特殊字符
-- 保持简洁明了
-
-✅ 好的命名：
-- `react-hooks-guide.md`
-- `javascript-event-loop.md`
-- `webpack-optimization.md`
-
-❌ 不好的命名：
-- `React Hooks Guide.md`（有空格）
-- `javascript事件循环.md`（混合中英文）
-- `webpack_optimization.md`（使用下划线）
-
-### 2. 内容组织
-
-- 每篇文章专注一个主题
-- 使用清晰的标题层级
-- 添加代码示例
-- 包含实践应用
-- 提供参考资料
-
-### 3. 标签使用
-
-- 每篇文章 3-5 个标签
-- 使用小写英文
-- 保持标签一致性
-- 避免过于宽泛的标签
-
-### 4. 定期维护
-
-- 定期更新过时内容
-- 修复失效链接
-- 优化文章结构
-- 补充新的知识点
-
-## 🎯 工作流程建议
-
-### 日常写作流程
-
-1. 有了新想法或学习笔记
-2. 整理成 Markdown 格式
-3. 运行 `npm run archive` 粘贴内容
-4. 系统自动归档和分类
-5. 运行 `npm run publish` 发布
-6. 完成！
-
-### 批量导入流程
-
-如果你有很多现有文章要导入：
-
-```bash
-# 创建一个脚本
-for file in old-articles/*.md; do
-  cat "$file" | npm run archive
-done
-```
-
-## 📚 更多资源
-
-- [VitePress 官方文档](https://vitepress.dev)
-- [Markdown 语法指南](https://markdown.com.cn)
-- [Giscus 文档](https://giscus.app)
-- [Cloudflare Pages 文档](https://developers.cloudflare.com/pages)
-
-## 🆘 获取帮助
-
-遇到问题？
-
-1. 查看 [README.md](README.md)
-2. 查看 [DEPLOY.md](DEPLOY.md)
-3. 检查 GitHub Issues
-4. 提交新的 Issue
-
-祝你写作愉快！ ✨
+- 运行 `npm run sidebar` 会自动扫描并更新导航栏
