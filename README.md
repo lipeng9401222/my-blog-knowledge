@@ -1,4 +1,4 @@
-# 前端知识库博客系统（2026版）
+# 前端知识库博客系统
 
 一个完全自动化的个人知识库博客系统，基于 VitePress 构建。
 
@@ -47,6 +47,7 @@ echo "你的文章内容" | npm run archive
 ```
 
 系统会自动：
+
 - ✅ 分析内容，判断所属分类（JavaScript/React/Vue/工程化/性能优化/面试题）
 - ✅ 提取关键词，生成标签
 - ✅ 创建分类目录（如果不存在）
@@ -106,15 +107,15 @@ GitHub Actions 会自动构建并部署到 Cloudflare Pages。
 
 ## 🛠️ 可用命令
 
-| 命令 | 说明 |
-|------|------|
-| `npm run dev` | 启动本地开发服务器 |
-| `npm run build` | 构建生产版本 |
-| `npm run preview` | 预览构建结果 |
-| `npm run archive` | 🌟 智能归档文章 |
-| `npm run new <分类>/<标题>` | 手动创建文章 |
-| `npm run sidebar` | 重新生成侧边栏 |
-| `npm run publish` | 发布到远程仓库 |
+| 命令                        | 说明               |
+| --------------------------- | ------------------ |
+| `npm run dev`               | 启动本地开发服务器 |
+| `npm run build`             | 构建生产版本       |
+| `npm run preview`           | 预览构建结果       |
+| `npm run archive`           | 🌟 智能归档文章    |
+| `npm run new <分类>/<标题>` | 手动创建文章       |
+| `npm run sidebar`           | 重新生成侧边栏     |
+| `npm run publish`           | 发布到远程仓库     |
 
 ## 🎨 自定义配置
 
@@ -124,10 +125,10 @@ GitHub Actions 会自动构建并部署到 Cloudflare Pages。
 
 ```typescript
 export default defineConfig({
-  title: '你的站点名称',
-  description: '你的站点描述',
+  title: "你的站点名称",
+  description: "你的站点描述",
   // ...
-})
+});
 ```
 
 ### 配置评论系统
@@ -181,6 +182,7 @@ description: 文章描述
 ### 其他平台
 
 也支持部署到：
+
 - Vercel
 - Netlify
 - GitHub Pages
