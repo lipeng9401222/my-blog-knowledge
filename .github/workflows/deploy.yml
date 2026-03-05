@@ -33,11 +33,8 @@ jobs:
       - name: 安装依赖
         run: npm ci
 
-      - name: 生成侧边栏
-        run: node scripts/generate-sidebar.js
-
       - name: 构建站点
-        run: npm run build
+        run: npm run sidebar && npm run build
 
       - name: 配置 GitHub Pages
         uses: actions/configure-pages@v4
