@@ -150,6 +150,8 @@
 
 /* ── Table ── */
 .vp-doc table {
+  width: 100% !important;
+  display: table !important;
   border-collapse: collapse;
   border-radius: 8px;
   overflow: hidden;
@@ -159,6 +161,10 @@
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
   font-weight: 600;
+}
+.vp-doc td,
+.vp-doc th {
+  padding: 10px 16px;
 }
 
 /* ── Blockquote ── */

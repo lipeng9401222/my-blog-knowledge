@@ -20,6 +20,7 @@ export default defineConfig({
       { text: 'JavaScript', link: '/javascript/' },
       { text: '性能优化', link: '/performance/' },
       { text: 'React', link: '/react/' },
+      { text: '团队协作', link: '/teamwork/' },
       { text: 'Vue', link: '/vue/' }
     ],
 
@@ -61,6 +62,17 @@ export default defineConfig({
                         {
                               "text": "React Hooks 性能优化指南",
                               "link": "/react/react-hooks-"
+                        }
+                  ]
+            }
+      ],
+      "/teamwork/": [
+            {
+                  "text": "团队协作",
+                  "items": [
+                        {
+                              "text": "Git 使用规范与最佳实践 v2.0（团队知识库）",
+                              "link": "/teamwork/git-v2-0"
                         }
                   ]
             }

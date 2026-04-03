@@ -21,6 +21,7 @@ const DISPLAY_NAMES = {
   css: 'CSS',
   nodejs: 'Node.js',
   typescript: 'TypeScript',
+  teamwork: '团队协作',
 }
 
 function getDisplayName(category) {

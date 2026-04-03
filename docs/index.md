@@ -47,6 +47,8 @@ features:
     linkText: 立即学习
 ---
 
+<NavLinks />
+
 <style>
 :root {
   --vp-home-hero-name-color: transparent;
