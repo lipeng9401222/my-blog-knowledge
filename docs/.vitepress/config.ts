@@ -23,7 +23,8 @@ export default defineConfig({
       { text: '工程化', link: '/engineering/' },
       { text: '性能优化', link: '/performance/' },
       { text: '团队协作', link: '/teamwork/' },
-      { text: 'AI技术', link: '/ai/' }
+      { text: 'AI技术', link: '/ai/' },
+      { text: 'Mac', link: '/mac/' }
     ],
 
     // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
@@ -173,6 +174,21 @@ export default defineConfig({
                                           "link": "/ai/applications/"
                                     }
                               ]
+                        }
+                  ]
+            }
+      ],
+      "/mac/": [
+            {
+                  "text": "Mac",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/mac/"
+                        },
+                        {
+                              "text": "Mac 上的 Git 仓库管理指南",
+                              "link": "/mac/git-repository-management"
                         }
                   ]
             }
