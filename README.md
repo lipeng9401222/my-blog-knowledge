@@ -6,7 +6,7 @@
 
 - 🚀 **智能归档**：粘贴文章内容，自动分类、自动创建目录、自动生成标签
 - 📝 **Markdown 写作**：专注内容创作，无需关心技术细节
-- 🔍 **本地搜索**：基于 Pagefind 的快速全文搜索
+- 🔍 **本地搜索**：基于 VitePress Local Search 的快速全文搜索
 - 💬 **评论系统**：集成 Giscus，基于 GitHub Discussions
 - 📱 **响应式设计**：完美支持移动端和桌面端
 - 🌙 **暗黑模式**：自动适配系统主题
@@ -48,7 +48,7 @@ echo "你的文章内容" | npm run archive
 
 系统会自动：
 
-- ✅ 分析内容，判断所属分类（JavaScript/React/Vue/工程化/性能优化/面试题）
+- ✅ 分析内容，判断所属分类（JavaScript/React/Vue/工程化/性能优化/团队协作/AI技术）
 - ✅ 提取关键词，生成标签
 - ✅ 创建分类目录（如果不存在）
 - ✅ 生成规范的 frontmatter
@@ -89,7 +89,8 @@ GitHub Actions 会自动构建并部署到 Cloudflare Pages。
 │   ├── vue/                # Vue 分类
 │   ├── engineering/        # 工程化分类
 │   ├── performance/        # 性能优化分类
-│   └── interview/          # 面试题分类
+│   ├── teamwork/           # 团队协作分类
+│   └── ai/                 # AI技术分类
 ├── .vitepress/             # VitePress 配置
 │   ├── config.ts           # 主配置文件
 │   └── theme/              # 自定义主题
@@ -136,7 +137,7 @@ export default defineConfig({
 1. 访问 [giscus.app](https://giscus.app)
 2. 按照指引配置你的 GitHub 仓库
 3. 获取配置参数
-4. 编辑 `.vitepress/theme/MyLayout.vue`，填入你的配置
+4. 编辑 `docs/.vitepress/theme/Layout.vue`，填入你的配置
 
 ### 配置 Cloudflare Pages
 

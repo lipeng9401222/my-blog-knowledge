@@ -11,7 +11,7 @@ const docsDir = path.join(__dirname, '..', 'docs')
 // 1. 自动扫描 docs/ 目录获取已有分类（不再硬编码）
 // ============================================================
 function discoverCategories() {
-  const ignore = ['.vitepress', 'public', 'node_modules']
+  const ignore = ['.vitepress', 'public', 'node_modules', 'tags']
   return fs.readdirSync(docsDir)
     .filter(name => {
       if (ignore.includes(name)) return false
@@ -28,7 +28,8 @@ const BUILTIN_KEYWORDS = {
   vue: ['vue', 'vue3', 'vue2', 'composition api', 'options api', 'reactive', 'ref', 'computed', 'watch', 'pinia', 'vuex', 'vue-router', 'nuxt', 'vueuse'],
   engineering: ['webpack', 'vite', 'rollup', 'esbuild', 'babel', 'eslint', 'prettier', '工程化', '构建', 'build', 'ci/cd', 'docker', 'monorepo', 'turborepo', 'pnpm', 'npm', 'yarn', 'typescript', 'ts'],
   performance: ['性能', 'performance', '优化', 'optimization', 'lazy load', '懒加载', 'cache', '缓存', 'cdn', 'lighthouse', 'core web vitals', 'tree shaking', 'code splitting'],
-  interview: ['面试', 'interview', '面试题', '算法', 'algorithm', 'leetcode', '笔试', '手写', 'handwrite'],
+  teamwork: ['git', 'gitee', 'github', 'merge request', 'pull request', 'rebase', 'commit', 'branch', 'code review', 'review', '团队协作', '协作规范', '工作流'],
+  ai: ['ai', 'llm', 'agent', 'agents', 'prompt', 'prompt engineering', 'skills', 'workflow', 'rag', 'embedding', '向量', '大模型', '智能体', '提示词', '知识库', '自动化'],
   browser: ['浏览器', 'browser', '渲染', 'render', 'dom', 'bom', 'http', 'https', 'tcp', 'cookie', 'session', 'storage', '跨域', 'cors', 'web安全', 'xss', 'csrf'],
   css: ['css', 'scss', 'sass', 'less', 'tailwind', 'flex', 'grid', '布局', 'layout', '动画', 'animation', 'transition', 'transform', 'responsive', '响应式'],
   nodejs: ['node', 'nodejs', 'express', 'koa', 'nest', 'deno', 'bun', 'stream', 'buffer', 'cluster', 'child_process', 'fs', 'path']
@@ -140,14 +141,23 @@ function extractTitle(content) {
 // ============================================================
 // 6. 生成文件名
 // ============================================================
+function slugifyText(text) {
+  return text
+    .normalize('NFKD')
+    .replace(/[^\w\s-]/g, ' ')
+    .replace(/_/g, ' ')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+    .toLowerCase()
+}
+
 function generateFileName(title) {
   if (!title || title === '未命名文章') return `post-${Date.now()}`
 
-  // 提取英文单词
-  const english = title.match(/[a-zA-Z0-9]+/g)
-  if (english && english.length >= 2) {
-    return english.join('-').toLowerCase().slice(0, 50)
-  }
+  const slug = slugifyText(title).slice(0, 60)
+  if (slug) return slug
 
   // 无英文 → 用时间戳
   return `post-${Date.now()}`

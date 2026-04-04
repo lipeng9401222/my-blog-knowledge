@@ -67,7 +67,8 @@
   - [x] docs/vue/
   - [x] docs/engineering/
   - [x] docs/performance/
-  - [x] docs/interview/
+  - [x] docs/teamwork/
+  - [x] docs/ai/
 
 - [x] 脚本目录
   - [x] scripts/auto-archive.js
@@ -91,7 +92,8 @@
   - [x] Vue 索引
   - [x] 工程化索引
   - [x] 性能优化索引
-  - [x] 面试题索引
+  - [x] 团队协作索引
+  - [x] AI技术索引
 
 ## 🧪 测试验证
 

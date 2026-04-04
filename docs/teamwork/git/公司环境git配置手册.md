@@ -1,58 +1,15 @@
-**Drafting a Markdown Guide**
+---
+title: Mac 上公司内网 Git 与项目开发环境准备指南
+date: 2026-04-03
+category: teamwork
+tags:
+  - git
+  - mac
+  - 内网
+  - 团队协作
+description: Mac 上公司内网 Git 与项目开发环境准备指南
+---
 
-I’m thinking I need to create a clear plan after gathering all the necessary context. The user asked for a guide in markdown, so I will structure it appropriately. The proposed document could include sections like the title, objectives, prerequisites, an understanding of Mac basics, installing tools, network checks, and choosing Git configuration modes. I also should outline a step-by-step recommended configuration and verify the presence of Git credential helpers. This should be straightforward!**Clarifying Git Credential Commands**
-
-I’m considering mentioning the test command, `git credential-osxkeychain`, but I think I should clarify how to approach it. It seems like the actual executable might enter a protocol, so I shouldn’t provide instructions that could confuse the user. Instead, I should focus on giving clear, straightforward guidance without overcomplicating things. Keeping instructions simple will help ensure the user understands how to proceed without any confusion. That's really important!**Clarifying git config usage**
-
-I need to note that the command `git config --global includeIf.gitdir:/work/company/.path /.gitconfig-company` may not correctly expand the tilde. Git config can store literal strings, which is fine, but `includeIf` patterns should end with a trailing slash. For example, the documentation shows `[includeIf "gitdir:/to/group/"] path=/foo.inc`. The syntax might be tricky because of the dot notation. It’s crucial to include both the command and manual file content to avoid errors.**Verifying Git configuration**
-
-I’m working on the `git config` command for configuring global settings for specific directories. I need to make sure I'm using the correct syntax for paths, especially with the `includeIf` directive. The tilde `` expands only at the start of a word, so in this case, Git would expand it properly as it looks for the home directory. However, I should probably include a trailing slash in the path for clarity. It might be safer to recommend manual edits to `/.gitconfig` to avoid mistakes.**Considering user experience**
-
-I’m thinking about what would be most helpful for the user, especially since they’re new to Mac. While manual editing could work, using commands might be easier. I should clarify that if they're using zsh, they need to edit the `/.zshrc` file, and provide steps for checking their shell with `echo $SHELL`. There are potential issues with commands like `ping` where they’ll need to stop it with Ctrl+C. 
-
-I'll mention credential management for Git clones, especially if using HTTP and the `osxkeychain`. I wonder if they will find this information valuable and if I should ask how satisfied they are with the guidance. I think I’ll also mention that I can’t create files directly in the repository, so they should save the content as `docs/mac-onboarding-guide.md`.**Providing final Markdown**
-
-I should let the user know something like, "下面是最终版 Markdown，可直接复制保存为 `mac-git-and-dev-setup.md`." After that, I’ll present the Markdown content in a large code block to keep it structured and easy to copy. I want to ensure that everything is clear and readable for them, so they can easily save it without any issues. This way, they have a complete document ready to go!**Considering user options**
-
-Since the user is a novice, I realize that Homebrew could be an extra step for them. I think I might suggest "Option A is to install Homebrew then nvm," or alternatively, "If you only need Git, you can skip Homebrew." However, it seems the user is looking for a clear and actionable final markdown response. I’ll make sure to structure that well to meet their needs!**Setting up Node on Mac**
-
-I’m thinking about the steps for setting up Node on a Mac: start with Xcode CLT, then Homebrew if the user’s comfortable with it, followed by nvm for version switching. It’s probably wise to mention Homebrew installation since it could be complex for a novice. I’ll include specific commands for installation like `brew install nvm`, ensuring the paths are correct for different Mac architectures. I should also note terminal tips for beginners and consider including markdown or a concise format. Let's keep it clear and detailed!**Drafting Git Configuration for Mac**
-
-I want to draft clear commands that are user-friendly for Mac. I think the command `git config --global includeIf."gitdir:/work/company/".path /.gitconfig-company` is valid, but using manual file editing might be safer to avoid syntax errors. For new Mac users, I could suggest editing `/.gitconfig` with `nano`, although that might lead to mistakes. A simpler approach could be:
-
-1. Create the necessary files with `touch`.
-2. Edit `/.gitconfig` and paste in the relevant section.
-3. Create and configure `/.gitconfig-company`.
-
-I should remind users that the `gitdir:` path must end with a slash for it to work properly, and that it applies recursively to repositories.**Clarifying Pattern Behavior**
-
-I’m looking at the documentation regarding patterns and their behavior. It seems that if a pattern ends with a `/`, it will automatically append `**`, which means it applies recursively. That’s interesting and actually quite useful! I should ensure to keep this in mind when setting up my configurations or commands, as it can simplify how I include files or directories. Making sense of these details is essential for avoiding confusion later on!**Considering Git configuration**
-
-I'm thinking about how the `includeIf` directive works in Git. It seems like the pattern `gitdir:/path/to/group/` should apply to repositories under that path. I noticed an example in the docs about using `gitdir:/work/`, and I'm wondering if using a trailing slash implies some behavior like `**`. 
-
-To be clear, I’ll suggest using `gitdir:/work/company/**` in the config to avoid ambiguity. Checking the Git documentation is also essential to validate this. Just to note, using `credential.helper=osxkeychain` means that the helper needs to be installed.**Reviewing Git and Node setup**
-
-I'm considering the steps to update the Git configuration and Node setup. First, I'd recommend removing the includeIf section manually. It's crucial to clear the keychain by searching for the specific IP address in Keychain Access. 
-
-I might also want to suggest using a project-level credential file, along with some caveats. The project specifies Node version >=18 and pnpm >=8, but since there’s no `.nvmrc` file, I'll suggest using `nvm` to set up Node 18 manually. It's probably best to avoid setting a default alias to prevent conflicts with other projects. If the user wants auto-switching later, they could add a `.nvmrc`.**Reviewing project documentation**
-
-I think I need to include some current project facts, like the remote URL and known risks, in the repository summary documentation. That sounds good! I also want to make sure that the code blocks inside the document are formatted correctly. Proper formatting is important for readability, so I’ll definitely double-check that. Let’s keep everything clear and organized to help anyone who might look at this later!
-可以，下面我直接给你一份“**最终版 Markdown 文档**”，你可以复制保存为：
-
-- `mac-company-git-dev-guide.md`
-
-这份文档已经尽量按你现在的情况做了精细化处理：
-
-- 适合 Mac 新手
-- 分为“**目录级共享配置**”和“**项目级配置**”
-- 每一步都尽量可操作
-- 包含当前这个项目的已知情况
-- 包含常见报错排查
-- 考虑“不影响其他项目”的目标
-
-说明一下：当前你还在 ask mode，我不能直接帮你写入仓库文件，所以先把完整 Markdown 成品给你，你可以直接复制保存。
-
-````markdown
 # Mac 上公司内网 Git 与项目开发环境准备指南
 
 > 适用对象：第一次或刚开始在 Mac 上做开发，希望拉取公司内网 Git 代码，并且尽量做到“只影响指定项目/指定目录，不影响其他项目”。
@@ -1316,16 +1273,3 @@ pnpm -v
 5. 等真正开始跑项目时，再单独处理 Mac 与 Windows 路径差异问题
 
 这样最稳，也最符合你“不影响其他项目”的目标。
-````
-
-如果你愿意，我下一步还能继续帮你做两件事中的任意一个：
-
-1. 把这份文档再压缩成一份“**超简版执行清单**”，适合你实际照着点命令做  
-2. 再补一份“**Mac 开发环境专用 md 文档**”，专门讲：
-   - `Homebrew`
-   - `nvm`
-   - `Node 18`
-   - `pnpm 8.15.4`
-   - 以及这个项目后续 `pnpm install` 可能遇到的兼容问题
-
-如果你满意这份文档，我建议你下一步切到 `CRAFT MODE`，我可以继续帮你把它整理成更适合放进项目文档目录的版本。

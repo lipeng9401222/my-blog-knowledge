@@ -1,295 +1,349 @@
 <script setup>
-import { ref } from "vue";
-
-const navGroups = ref([
+const resourceGroups = [
   {
-    title: "🔧 开发工具",
+    title: '代码托管与协作',
     items: [
       {
-        name: "GitHub",
-        url: "https://github.com",
-        desc: "代码托管平台",
-        icon: "🐙",
+        name: 'GitHub',
+        url: 'https://github.com',
+        desc: '代码托管与协作',
+        icon: '🐙'
       },
       {
-        name: "VS Code",
-        url: "https://code.visualstudio.com",
-        desc: "编辑器官网",
-        icon: "💻",
+        name: 'Gitee',
+        url: 'https://gitee.com',
+        desc: '国内代码托管平台',
+        icon: '🧭'
       },
       {
-        name: "CodePen",
-        url: "https://codepen.io",
-        desc: "在线代码演示",
-        icon: "🖊️",
-      },
-      {
-        name: "StackBlitz",
-        url: "https://stackblitz.com",
-        desc: "在线 IDE",
-        icon: "⚡",
-      },
-    ],
+        name: 'GitLab',
+        url: 'https://about.gitlab.com',
+        desc: 'DevOps 一体化平台',
+        icon: '🦊'
+      }
+    ]
   },
   {
-    title: "📚 学习资源",
+    title: '文档与规范',
     items: [
       {
-        name: "MDN",
-        url: "https://developer.mozilla.org/zh-CN",
-        desc: "Web 开发文档",
-        icon: "📖",
+        name: 'MDN',
+        url: 'https://developer.mozilla.org/zh-CN',
+        desc: 'Web 标准文档',
+        icon: '📘'
       },
       {
-        name: "Can I Use",
-        url: "https://caniuse.com",
-        desc: "浏览器兼容性",
-        icon: "🌐",
+        name: 'TypeScript',
+        url: 'https://www.typescriptlang.org/docs/',
+        desc: 'TypeScript 官方文档',
+        icon: '📐'
       },
       {
-        name: "TypeScript",
-        url: "https://www.typescriptlang.org",
-        desc: "TS 官方文档",
-        icon: "🔷",
-      },
-      { name: "掘金", url: "https://juejin.cn", desc: "技术社区", icon: "💎" },
-    ],
+        name: 'Node.js',
+        url: 'https://nodejs.org/docs/latest/api/',
+        desc: 'Node API 参考手册',
+        icon: '🟢'
+      }
+    ]
   },
   {
-    title: "🎨 设计 & UI",
+    title: '框架与工程生态',
     items: [
       {
-        name: "Figma",
-        url: "https://www.figma.com",
-        desc: "设计协作工具",
-        icon: "🎨",
+        name: 'React Docs',
+        url: 'https://react.dev',
+        desc: 'React 官方文档',
+        icon: '⚛️'
       },
       {
-        name: "Dribbble",
-        url: "https://dribbble.com",
-        desc: "设计灵感",
-        icon: "🏀",
+        name: 'Vue Docs',
+        url: 'https://cn.vuejs.org',
+        desc: 'Vue 官方文档',
+        icon: '💚'
       },
       {
-        name: "Iconfont",
-        url: "https://www.iconfont.cn",
-        desc: "图标库",
-        icon: "🎯",
-      },
-      {
-        name: "Coolors",
-        url: "https://coolors.co",
-        desc: "配色方案",
-        icon: "🌈",
-      },
-    ],
+        name: 'Vite',
+        url: 'https://cn.vite.dev',
+        desc: '新一代前端构建工具',
+        icon: '⚡'
+      }
+    ]
   },
   {
-    title: "⚙️ 框架文档",
+    title: '调试与性能',
     items: [
       {
-        name: "Vue 3",
-        url: "https://cn.vuejs.org",
-        desc: "Vue.js 官方文档",
-        icon: "💚",
+        name: 'Can I Use',
+        url: 'https://caniuse.com',
+        desc: '浏览器兼容性查询',
+        icon: '✅'
       },
       {
-        name: "React",
-        url: "https://react.dev",
-        desc: "React 官方文档",
-        icon: "⚛️",
+        name: 'web.dev',
+        url: 'https://web.dev',
+        desc: '性能与用户体验最佳实践',
+        icon: '🚀'
       },
       {
-        name: "Vite",
-        url: "https://cn.vitejs.dev",
-        desc: "下一代构建工具",
-        icon: "⚡",
-      },
-      {
-        name: "VitePress",
-        url: "https://vitepress.dev",
-        desc: "静态站点生成器",
-        icon: "📝",
-      },
-    ],
+        name: 'Lighthouse',
+        url: 'https://developer.chrome.com/docs/lighthouse/overview',
+        desc: '页面质量评估指南',
+        icon: '🔦'
+      }
+    ]
   },
-]);
+  {
+    title: 'AI 与 Agent',
+    items: [
+      {
+        name: 'skills.sh',
+        url: 'https://skills.sh',
+        desc: 'AI Agent Skills 目录与排行榜',
+        icon: '🧠'
+      },
+      {
+        name: 'OpenAI Docs',
+        url: 'https://platform.openai.com/docs/overview',
+        desc: '模型、API 与 Agent 文档',
+        icon: '🤖'
+      },
+      {
+        name: 'Anthropic Docs',
+        url: 'https://docs.anthropic.com',
+        desc: 'Claude 与工作流文档',
+        icon: '🪄'
+      }
+    ]
+  },
+  {
+    title: '设计与表达',
+    items: [
+      {
+        name: 'Figma',
+        url: 'https://www.figma.com',
+        desc: '界面设计与协作',
+        icon: '🎨'
+      },
+      {
+        name: 'Excalidraw',
+        url: 'https://excalidraw.com',
+        desc: '流程与架构草图',
+        icon: '✏️'
+      },
+      {
+        name: 'Iconify',
+        url: 'https://iconify.design',
+        desc: '统一图标检索与引用',
+        icon: '🧩'
+      }
+    ]
+  },
+  {
+    title: '工具服务',
+    items: [
+      {
+        name: 'npm',
+        url: 'https://www.npmjs.com',
+        desc: '前端包生态',
+        icon: '📦'
+      },
+      {
+        name: 'VitePress',
+        url: 'https://vitepress.dev',
+        desc: '文档站点框架',
+        icon: '⚡'
+      },
+      {
+        name: 'Cloudflare Pages',
+        url: 'https://pages.cloudflare.com',
+        desc: '静态站点部署平台',
+        icon: '☁️'
+      }
+    ]
+  }
+]
 </script>
 
 <template>
-  <div class="nav-links-container">
-    <div class="nav-links-header">
-      <h2 class="nav-links-title">🔗 常用导航</h2>
-      <p class="nav-links-desc">精选前端开发常用网站，快速直达</p>
+  <section id="dev-resources" class="resource-section">
+    <div class="resource-header">
+      <span class="resource-kicker">开发资源</span>
+      <h2 class="resource-title">常用开发网站快捷导航</h2>
+      <p class="resource-desc">
+        聚合文档、调试、设计、部署与 AI 开发资源，尽量让首页成为真正能高频打开的工作台入口。
+      </p>
     </div>
-    <div class="nav-links-groups">
-      <div v-for="group in navGroups" :key="group.title" class="nav-group">
-        <h3 class="nav-group-title">{{ group.title }}</h3>
-        <div class="nav-group-items">
+
+    <div class="resource-groups">
+      <article v-for="group in resourceGroups" :key="group.title" class="resource-group">
+        <header class="resource-group-header">
+          <h3 class="resource-group-title">{{ group.title }}</h3>
+        </header>
+
+        <div class="resource-items">
           <a
             v-for="item in group.items"
             :key="item.name"
             :href="item.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="nav-item"
+            class="resource-item"
           >
-            <span class="nav-item-icon">{{ item.icon }}</span>
-            <div class="nav-item-info">
-              <span class="nav-item-name">{{ item.name }}</span>
-              <span class="nav-item-desc">{{ item.desc }}</span>
-            </div>
-            <span class="nav-item-arrow">↗</span>
+            <span class="resource-item-icon">{{ item.icon }}</span>
+            <span class="resource-item-main">
+              <span class="resource-item-name">{{ item.name }}</span>
+              <span class="resource-item-desc">{{ item.desc }}</span>
+            </span>
+            <span class="resource-item-arrow">↗</span>
           </a>
         </div>
-      </div>
+      </article>
     </div>
-  </div>
+  </section>
 </template>
 
 <style scoped>
-.nav-links-container {
+.resource-section {
   max-width: 1152px;
   margin: 0 auto;
   padding: 48px 24px 80px;
 }
 
-.nav-links-header {
+.resource-header {
+  margin-bottom: 32px;
   text-align: center;
-  margin-bottom: 48px;
 }
 
-.nav-links-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #7c6afb 0%, #5eead4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 8px;
-}
-
-.nav-links-desc {
-  color: var(--vp-c-text-2);
-  font-size: 0.95rem;
-}
-
-.nav-links-groups {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-@media (max-width: 768px) {
-  .nav-links-groups {
-    grid-template-columns: 1fr;
-  }
-}
-
-.nav-group {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  padding: 24px;
-  transition:
-    box-shadow 0.3s ease,
-    transform 0.3s ease;
-}
-
-.nav-group:hover {
-  box-shadow: 0 8px 32px rgba(124, 106, 251, 0.12);
-  transform: translateY(-2px);
-}
-
-.dark .nav-group:hover {
-  box-shadow: 0 8px 32px rgba(157, 142, 255, 0.15);
-}
-
-.nav-group-title {
-  font-size: 1rem;
+.resource-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-size: 0.8rem;
   font-weight: 600;
+}
+
+.resource-title {
+  margin: 12px 0 8px;
+  font-size: 1.9rem;
+  font-weight: 700;
   color: var(--vp-c-text-1);
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--vp-c-divider);
 }
 
-.nav-group-items {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.resource-desc {
+  margin: 0 auto;
+  max-width: 680px;
+  color: var(--vp-c-text-2);
+  line-height: 1.75;
 }
 
-.nav-item {
+.resource-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.resource-group {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg) 100%);
+  box-shadow: var(--blog-card-shadow);
+  overflow: hidden;
+}
+
+.resource-group-header {
+  padding: 18px 20px 0;
+}
+
+.resource-group-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.resource-items {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px 20px;
+}
+
+.resource-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 14px;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid transparent;
   text-decoration: none;
-  color: var(--vp-c-text-1);
-  transition: all 0.2s ease;
-  position: relative;
+  color: inherit;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.nav-item:hover {
+.resource-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--vp-c-brand-1);
   background: var(--vp-c-brand-soft);
-  transform: translateX(4px);
+  box-shadow: 0 12px 28px rgba(124, 106, 251, 0.14);
 }
 
-.nav-item-icon {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  display: flex;
+.resource-item-icon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   background: var(--vp-c-bg);
-  border-radius: 8px;
   border: 1px solid var(--vp-c-divider);
-}
-
-.nav-item-info {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 0;
-}
-
-.nav-item-name {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.nav-item-desc {
-  font-size: 0.75rem;
-  color: var(--vp-c-text-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.nav-item-arrow {
-  font-size: 0.8rem;
-  color: var(--vp-c-text-3);
-  opacity: 0;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+  font-size: 1.25rem;
   flex-shrink: 0;
 }
 
-.nav-item:hover .nav-item-arrow {
-  opacity: 1;
-  transform: translate(2px, -2px);
+.resource-item-main {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
 }
 
-.nav-item:hover .nav-item-name {
-  color: var(--vp-c-brand-1);
+.resource-item-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.resource-item-desc {
+  margin-top: 2px;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+}
+
+.resource-item-arrow {
+  color: var(--vp-c-text-3);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .resource-section {
+    padding: 32px 20px 56px;
+  }
+
+  .resource-title {
+    font-size: 1.55rem;
+  }
+
+  .resource-groups {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

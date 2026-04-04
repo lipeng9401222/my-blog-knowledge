@@ -1,9 +1,13 @@
-下面给你一份 `README` 风格的精简版 `.md`，适合直接发给同事或放到项目文档里。
-
-你可以保存为：
-
-`README-Mac-Git-Gitee.md`
-
+---
+title: Mac 下 Git / Gitee 配置说明（guidemanageweb）
+date: 2026-04-03
+category: teamwork
+tags:
+  - git
+  - gitee
+  - mac
+  - 团队协作
+description: Mac 下 Git / Gitee 配置说明（guidemanageweb）
 ---
 
 # Mac 下 Git / Gitee 配置说明（`guidemanageweb`）
@@ -213,9 +217,3 @@ git push origin test
 ```
 
 ---
-
-如果你愿意，我还可以继续给你补一个更短的版本，比如：
-
-- `3分钟快速上手版`
-- `发群里的一段简洁说明`
-- `带 token 申请步骤的 README 增强版`

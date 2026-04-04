@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   // 站点配置
   title: '前端知识库',
-  description: '系统化的前端技术文档',
+  description: '系统化的前端、团队协作与 AI 技术文档',
   lang: 'zh-CN',
   // GitHub Pages 部署时需要设置 base
   // 如果你的仓库名是 my-blog-knowledge，则 base 为 /my-blog-knowledge/
@@ -15,33 +15,27 @@ export default defineConfig({
     // 导航栏
     nav: [
       { text: '首页', link: '/' },
-      { text: '工程化', link: '/engineering/' },
-      { text: '面试题', link: '/interview/' },
+      { text: '开发资源', link: '/#dev-resources' },
+      { text: '标签', link: '/tags/' },
       { text: 'JavaScript', link: '/javascript/' },
-      { text: '性能优化', link: '/performance/' },
       { text: 'React', link: '/react/' },
+      { text: 'Vue', link: '/vue/' },
+      { text: '工程化', link: '/engineering/' },
+      { text: '性能优化', link: '/performance/' },
       { text: '团队协作', link: '/teamwork/' },
-      { text: 'Vue', link: '/vue/' }
+      { text: 'AI技术', link: '/ai/' }
     ],
 
     // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
     sidebar: {
-      "/engineering/": [
-            {
-                  "text": "工程化",
-                  "items": []
-            }
-      ],
-      "/interview/": [
-            {
-                  "text": "面试题",
-                  "items": []
-            }
-      ],
       "/javascript/": [
             {
                   "text": "JavaScript",
                   "items": [
+                        {
+                              "text": "概览",
+                              "link": "/javascript/"
+                        },
                         {
                               "text": "JavaScript Event Loop 事件循环机制",
                               "link": "/javascript/event-loop"
@@ -49,30 +43,17 @@ export default defineConfig({
                   ]
             }
       ],
-      "/performance/": [
-            {
-                  "text": "性能优化",
-                  "items": []
-            }
-      ],
       "/react/": [
             {
                   "text": "React",
                   "items": [
                         {
+                              "text": "概览",
+                              "link": "/react/"
+                        },
+                        {
                               "text": "React Hooks 性能优化指南",
                               "link": "/react/react-hooks-"
-                        }
-                  ]
-            }
-      ],
-      "/teamwork/": [
-            {
-                  "text": "团队协作",
-                  "items": [
-                        {
-                              "text": "Git 使用规范与最佳实践 v2.0（团队知识库）",
-                              "link": "/teamwork/git-v2-0"
                         }
                   ]
             }
@@ -82,8 +63,116 @@ export default defineConfig({
                   "text": "Vue",
                   "items": [
                         {
+                              "text": "概览",
+                              "link": "/vue/"
+                        },
+                        {
                               "text": "Vue3 Composition API 深入解析",
                               "link": "/vue/vue3-composition-api-"
+                        }
+                  ]
+            }
+      ],
+      "/engineering/": [
+            {
+                  "text": "工程化",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/engineering/"
+                        }
+                  ]
+            }
+      ],
+      "/performance/": [
+            {
+                  "text": "性能优化",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/performance/"
+                        },
+                        {
+                              "text": "Core Web Vitals 实战：从指标理解到前端性能优化闭环",
+                              "link": "/performance/core-web-vitals-practice"
+                        }
+                  ]
+            }
+      ],
+      "/teamwork/": [
+            {
+                  "text": "团队协作",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/teamwork/"
+                        },
+                        {
+                              "text": "Git",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/teamwork/git/"
+                                    },
+                                    {
+                                          "text": "Mac 上公司内网 Git 与项目开发环境准备指南",
+                                          "link": "/teamwork/git/公司环境git配置手册"
+                                    },
+                                    {
+                                          "text": "Mac 下 Git / Gitee 配置说明（guidemanageweb）",
+                                          "link": "/teamwork/git/本地gitee配置手册"
+                                    },
+                                    {
+                                          "text": "Git 使用规范与最佳实践 v2.0（团队知识库）",
+                                          "link": "/teamwork/git/git-v2-0"
+                                    }
+                              ]
+                        }
+                  ]
+            }
+      ],
+      "/ai/": [
+            {
+                  "text": "AI技术",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/ai/"
+                        },
+                        {
+                              "text": "Skills 收集",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/ai/skills/"
+                                    },
+                                    {
+                                          "text": "AI Coding Skills 体系设计：从 Prompt、上下文到可复用工作流",
+                                          "link": "/ai/skills/ai-coding-skills-system-design"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "实用 AI 工具",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/ai/tools/"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "AI 技术应用",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/ai/applications/"
+                                    }
+                              ]
                         }
                   ]
             }

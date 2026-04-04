@@ -36,7 +36,7 @@ npm run archive
 ```
 🤖 智能归档系统 v2.0
 
-📂 已有分类: engineering | interview | javascript | performance | react | vue
+📂 已有分类: ai | engineering | javascript | performance | react | teamwork | vue
 
 📋 请粘贴文章内容...
 
@@ -70,7 +70,7 @@ npm run new "React 18 并发特性" react
 
 ```
 📝 文章标题: React 18 并发特性
-📂 分类列表: javascript | react | vue | engineering | browser | performance | css | interview | nodejs
+📂 分类列表: ai | engineering | javascript | performance | react | teamwork | vue
 📂 选择分类 (默认: javascript): react
 
 ✅ 文章已创建: docs/react/react-18.md
@@ -148,7 +148,8 @@ my-blog-knowledge/
 │   ├── vue/                   # Vue 分类
 │   ├── engineering/           # 工程化分类
 │   ├── performance/           # 性能优化分类
-│   └── interview/             # 面试题分类
+│   ├── teamwork/              # 团队协作分类
+│   └── ai/                    # AI技术分类
 │
 ├── scripts/
 │   ├── auto-archive.js        # 智能归档脚本 ⭐
