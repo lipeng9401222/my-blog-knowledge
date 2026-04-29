@@ -202,6 +202,102 @@ export default defineConfig({
                         {
                               "text": "安装环境",
                               "link": "/environment/安装环境"
+                        },
+                        {
+                              "text": "AI开发规则整合",
+                              "link": "/environment/AI开发规则整合"
+                        },
+                        {
+                              "text": "01-快速入门",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "jar包模式启动",
+                                          "link": "/environment/01-快速入门/jar包模式启动"
+                                    },
+                                    {
+                                          "text": "准备环境",
+                                          "link": "/environment/01-快速入门/准备环境"
+                                    },
+                                    {
+                                          "text": "开发环境启动",
+                                          "link": "/environment/01-快速入门/开发环境启动"
+                                    },
+                                    {
+                                          "text": "访问系统",
+                                          "link": "/environment/01-快速入门/访问系统"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "02-页面开发",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "页面开发[vue]",
+                                          "link": "/environment/02-页面开发/页面开发vue"
+                                    },
+                                    {
+                                          "text": "页面开发[编码模型vue]",
+                                          "link": "/environment/02-页面开发/页面开发编码模型vue"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "03-服务开发",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "Action接口开发",
+                                          "link": "/environment/03-服务开发/Action接口开发"
+                                    },
+                                    {
+                                          "text": "rest接口开发",
+                                          "link": "/environment/03-服务开发/rest接口开发"
+                                    },
+                                    {
+                                          "text": "微服务开发",
+                                          "link": "/environment/03-服务开发/微服务开发"
+                                    },
+                                    {
+                                          "text": "流程开发",
+                                          "link": "/environment/03-服务开发/流程开发"
+                                    },
+                                    {
+                                          "text": "组件安装",
+                                          "link": "/environment/03-服务开发/组件安装"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "04-部署调试",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "F10快速开始",
+                                          "link": "/environment/04-部署调试/F10快速开始"
+                                    },
+                                    {
+                                          "text": "vue部署",
+                                          "link": "/environment/04-部署调试/vue部署"
+                                    },
+                                    {
+                                          "text": "前后端分离部署",
+                                          "link": "/environment/04-部署调试/前后端分离部署"
+                                    },
+                                    {
+                                          "text": "打包发布",
+                                          "link": "/environment/04-部署调试/打包发布"
+                                    },
+                                    {
+                                          "text": "热部署",
+                                          "link": "/environment/04-部署调试/热部署"
+                                    },
+                                    {
+                                          "text": "远程调试",
+                                          "link": "/environment/04-部署调试/远程调试"
+                                    }
+                              ]
                         }
                   ]
             }
