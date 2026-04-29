@@ -100,8 +100,8 @@
   box-shadow: var(--blog-card-shadow);
 }
 
-.VPSidebarItem:hover .text,
-.VPSidebarItem.is-active .text {
+.VPSidebarItem:hover > .text,
+.VPSidebarItem.is-active > .text {
   color: var(--vp-c-brand-1) !important;
 }
 
