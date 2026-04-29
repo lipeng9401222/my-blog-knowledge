@@ -16,13 +16,15 @@ const DISPLAY_NAMES = {
   performance: '性能优化',
   teamwork: '团队协作',
   ai: 'AI技术',
+  environment: '环境安装',
+  mac: 'Mac',
   git: 'Git',
   skills: 'Skills 收集',
   tools: '实用 AI 工具',
   applications: 'AI 技术应用'
 }
 
-const TOP_LEVEL_ORDER = ['javascript', 'react', 'vue', 'engineering', 'performance', 'teamwork', 'ai']
+const TOP_LEVEL_ORDER = ['javascript', 'react', 'vue', 'engineering', 'performance', 'teamwork', 'ai', 'environment', 'mac']
 const SECTION_ORDER = {
   teamwork: ['git'],
   ai: ['skills', 'tools', 'applications']

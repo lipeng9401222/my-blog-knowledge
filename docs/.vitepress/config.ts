@@ -24,6 +24,7 @@ export default defineConfig({
       { text: '性能优化', link: '/performance/' },
       { text: '团队协作', link: '/teamwork/' },
       { text: 'AI技术', link: '/ai/' },
+      { text: '环境安装', link: '/environment/' },
       { text: 'Mac', link: '/mac/' }
     ],
 
@@ -117,6 +118,10 @@ export default defineConfig({
                                           "link": "/teamwork/git/"
                                     },
                                     {
+                                          "text": "Git 用户名与邮箱配置指南",
+                                          "link": "/teamwork/git/git-用户名与邮箱配置"
+                                    },
+                                    {
                                           "text": "Mac 上公司内网 Git 与项目开发环境准备指南",
                                           "link": "/teamwork/git/公司环境git配置手册"
                                     },
@@ -174,6 +179,29 @@ export default defineConfig({
                                           "link": "/ai/applications/"
                                     }
                               ]
+                        }
+                  ]
+            }
+      ],
+      "/environment/": [
+            {
+                  "text": "环境安装",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/environment/"
+                        },
+                        {
+                              "text": "Docker 部署操作文档",
+                              "link": "/environment/Docker部署操作文档"
+                        },
+                        {
+                              "text": "本地环境与 Docker 选择指南",
+                              "link": "/environment/本地环境与Docker选择指南"
+                        },
+                        {
+                              "text": "安装环境",
+                              "link": "/environment/安装环境"
                         }
                   ]
             }
