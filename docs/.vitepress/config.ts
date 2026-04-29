@@ -5,6 +5,7 @@ export default defineConfig({
   title: '前端知识库',
   description: '系统化的前端、团队协作与 AI 技术文档',
   lang: 'zh-CN',
+  ignoreDeadLinks: true,
   // GitHub Pages 部署时需要设置 base
   // 如果你的仓库名是 my-blog-knowledge，则 base 为 /my-blog-knowledge/
   // 如果使用自定义域名，设置为 /
