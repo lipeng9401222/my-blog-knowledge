@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexbot / EClaw 五层架构图</title>
+    <style>
+      :root {
+        --c-bg: #f8fafc;
+        --c-canvas: #ffffff;
+        --c-border: #cbd5e1;
+        --c-border-strong: #94a3b8;
+        --c-text-main: #0f172a;
+        --c-text-sub: #64748b;
+        --c-text-label: #475569;
+        --c-accent: #0f172a;
+        --c-layer-bg: #f1f5f9;
+        --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-mono: 'SF Mono', Monaco, Consolas, monospace;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--c-bg);
+        font-family: var(--font-ui);
+        color: var(--c-text-main);
+        padding: 40px;
+      }
+
+      .diagram-canvas {
+        background: var(--c-canvas);
+        border: 2px solid var(--c-border);
+        padding: 32px;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .diagram-header {
+        border-bottom: 1px solid var(--c-border);
+        padding-bottom: 16px;
+        margin-bottom: 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .diagram-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--c-text-main);
+      }
+
+      .diagram-subtitle {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--c-text-sub);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+      }
+
+      .diagram-meta {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--c-text-sub);
+        text-align: right;
+        line-height: 1.6;
+      }
+
+      /* Layer container */
+      .layer {
+        position: relative;
+        margin-bottom: 0;
+      }
+
+      .layer-label {
+        position: absolute;
+        left: -8px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+        transform-origin: left center;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--c-text-sub);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+
+      .layer-inner {
+        border: 1px solid var(--c-border);
+        background: var(--c-layer-bg);
+        padding: 16px 16px 16px 28px;
+      }
+
+      .layer-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--c-text-main);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .layer-title .badge {
+        font-size: 9px;
+        font-family: var(--font-mono);
+        padding: 2px 6px;
+        border: 1px solid var(--c-text-main);
+        background: var(--c-text-main);
+        color: var(--c-canvas);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .layer-desc {
+        font-size: 11px;
+        color: var(--c-text-sub);
+        font-family: var(--font-mono);
+      }
+
+      /* Node grid */
+      .node-grid {
+        display: grid;
+        gap: 8px;
+      }
+
+      .node {
+        background: var(--c-canvas);
+        border: 1px solid var(--c-border);
+        padding: 10px 12px;
+        text-align: center;
+      }
+
+      .node-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--c-text-main);
+      }
+
+      .node-detail {
+        font-size: 10px;
+        font-family: var(--font-mono);
+        color: var(--c-text-sub);
+        margin-top: 3px;
+        line-height: 1.4;
+      }
+
+      /* Arrow between layers */
+      .arrow-flow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px 0;
+      }
+
+      .arrow-flow svg {
+        display: block;
+      }
+
+      .arrow-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--c-text-sub);
+        margin-left: 8px;
+      }
+
+      /* Layer 1: 5 columns */
+      .grid-5 {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      /* Layer 2: 5 columns */
+      .grid-5-2 {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      /* Layer 3: 4 columns */
+      .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      /* Layer 4: 3 columns top row + 3 columns bottom row */
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Layer 5: 3 columns */
+      .grid-3-5 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      /* Sub-grid inside nodes */
+      .sub-nodes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        justify-content: center;
+        margin-top: 4px;
+      }
+
+      .sub-node {
+        font-size: 9px;
+        font-family: var(--font-mono);
+        color: var(--c-text-label);
+        padding: 2px 5px;
+        border: 1px solid var(--c-border);
+        background: var(--c-canvas);
+        white-space: nowrap;
+      }
+
+      /* Flow chain in layer 4 */
+      .flow-chain {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 8px;
+        padding: 8px;
+        border: 1px dashed var(--c-border);
+        background: var(--c-canvas);
+      }
+
+      .flow-node {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--c-text-main);
+        padding: 4px 10px;
+        border: 1px solid var(--c-border-strong);
+        background: var(--c-canvas);
+      }
+
+      .flow-arrow {
+        color: var(--c-text-sub);
+        font-size: 14px;
+      }
+
+      /* Legend */
+      .legend {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid var(--c-border);
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--c-text-sub);
+      }
+
+      .legend-swatch {
+        width: 16px;
+        height: 12px;
+        border: 1px solid var(--c-border);
+      }
+
+      .legend-swatch--solid {
+        background: var(--c-text-main);
+        border-color: var(--c-text-main);
+      }
+
+      .legend-swatch--outline {
+        background: var(--c-canvas);
+      }
+
+      .legend-swatch--dashed {
+        background: var(--c-canvas);
+        border-style: dashed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="diagram-canvas">
+      <div class="diagram-header">
+        <div>
+          <h1 class="diagram-title">Nexbot / EClaw — 五层架构图</h1>
+          <p class="diagram-subtitle">FIVE-LAYER ARCHITECTURE BLUEPRINT</p>
+        </div>
+        <div class="diagram-meta">
+          Version: nexbot 0.1.1<br />
+          Date: 2026-06-29
+        </div>
+      </div>
+
+      <!-- Layer 1: Entry Layer -->
+      <div class="layer">
+        <div class="layer-label">L1</div>
+        <div class="layer-inner">
+          <div class="layer-title">
+            入口层 · Entry Layer
+            <span class="badge">5 ENTRY POINTS</span>
+          </div>
+          <div class="node-grid grid-5">
+            <div class="node">
+              <div class="node-name">HTTP REST API</div>
+              <div class="node-detail">FastAPI Routes<br />/api/v1/*</div>
+            </div>
+            <div class="node">
+              <div class="node-name">SSE 流式</div>
+              <div class="node-detail">POST /agent/runs/stream<br />Server-Sent Events</div>
+            </div>
+            <div class="node">
+              <div class="node-name">WebSocket</div>
+              <div class="node-detail">POST /agent/runs/ws<br />Ticket → WS</div>
+            </div>
+            <div class="node">
+              <div class="node-name">钉钉 Stream</div>
+              <div class="node-detail">DingTalkStreamDispatcher<br />企业 IM 事件</div>
+            </div>
+            <div class="node">
+              <div class="node-name">定时任务</div>
+              <div class="node-detail">APScheduler<br />cron / once / interval</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow L1 → L2 -->
+      <div class="arrow-flow">
+        <svg width="24" height="20" viewBox="0 0 24 20">
+          <line x1="12" y1="0" x2="12" y2="14" stroke="#64748b" stroke-width="1.5" />
+          <polyline points="6,10 12,16 18,10" fill="none" stroke="#64748b" stroke-width="1.5" />
+        </svg>
+        <span class="arrow-label">AgentRunRequest / GatewayRunCommand</span>
+      </div>
+
+      <!-- Layer 2: Gateway Control Plane -->
+      <div class="layer">
+        <div class="layer-label">L2</div>
+        <div class="layer-inner">
+          <div class="layer-title">
+            Gateway 控制面 · Control Plane
+            <span class="badge">AppGateway · 14 SUB-GATEWAYS</span>
+          </div>
+          <div class="node-grid grid-5-2">
+            <div class="node">
+              <div class="node-name">鉴权</div>
+              <div class="node-detail">受信头 / JWT<br />Session Cookie</div>
+            </div>
+            <div class="node">
+              <div class="node-name">准入控制</div>
+              <div class="sub-nodes">
+                <span class="sub-node">限流 20/10s</span>
+                <span class="sub-node">并发 ≤4</span>
+                <span class="sub-node">幂等 TTL 300s</span>
+                <span class="sub-node">熔断 503</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">超时保护</div>
+              <div class="node-detail">GatewayTimeoutGuard<br />默认 90s</div>
+            </div>
+            <div class="node">
+              <div class="node-name">流式编排</div>
+              <div class="node-detail">GatewayStreamOrchestrator<br />SSE 心跳 30s</div>
+            </div>
+            <div class="node">
+              <div class="node-name">用户展示过滤</div>
+              <div class="node-detail">hidden / status_only<br />card / full</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow L2 → L3 -->
+      <div class="arrow-flow">
+        <svg width="24" height="20" viewBox="0 0 24 20">
+          <line x1="12" y1="0" x2="12" y2="14" stroke="#64748b" stroke-width="1.5" />
+          <polyline points="6,10 12,16 18,10" fill="none" stroke="#64748b" stroke-width="1.5" />
+        </svg>
+        <span class="arrow-label">_invoke() · 鉴权 + 准入 + 审计</span>
+      </div>
+
+      <!-- Layer 3: AgentService Facade -->
+      <div class="layer">
+        <div class="layer-label">L3</div>
+        <div class="layer-inner">
+          <div class="layer-title">
+            AgentService 门面 · Service Facade
+            <span class="badge">4 DOMAINS · ~40 REPOS</span>
+          </div>
+          <div class="node-grid grid-4">
+            <div class="node">
+              <div class="node-name">AgentResourceDomain</div>
+              <div class="node-detail">账号 · 工具注册表<br />技能 · Bootstrap</div>
+              <div class="sub-nodes">
+                <span class="sub-node">tool_repository</span>
+                <span class="sub-node">mcp_repository</span>
+                <span class="sub-node">agent_definition</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">AgentContextDomain</div>
+              <div class="node-detail">会话上下文 · 内存<br />持久化</div>
+              <div class="sub-nodes">
+                <span class="sub-node">context_repository</span>
+                <span class="sub-node">memory_state</span>
+                <span class="sub-node">memory_artifact</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">AgentRuntimeDomain</div>
+              <div class="node-detail">Provider · 图工厂<br />运行协调 · 流式</div>
+              <div class="sub-nodes">
+                <span class="sub-node">AgentGraphFactory</span>
+                <span class="sub-node">RunCoordinator</span>
+                <span class="sub-node">StreamService</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">AgentChannelDomain</div>
+              <div class="node-detail">外部通道 · 入站派发<br />DingTalk / Webhook</div>
+              <div class="sub-nodes">
+                <span class="sub-node">ChannelRuntime</span>
+                <span class="sub-node">DingTalkRunner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow L3 → L4 -->
+      <div class="arrow-flow">
+        <svg width="24" height="20" viewBox="0 0 24 20">
+          <line x1="12" y1="0" x2="12" y2="14" stroke="#64748b" stroke-width="1.5" />
+          <polyline points="6,10 12,16 18,10" fill="none" stroke="#64748b" stroke-width="1.5" />
+        </svg>
+        <span class="arrow-label">AgentGraphFactory.build() → GraphBundle</span>
+      </div>
+
+      <!-- Layer 4: LangGraph Runtime -->
+      <div class="layer">
+        <div class="layer-label">L4</div>
+        <div class="layer-inner">
+          <div class="layer-title">
+            LangGraph Runtime · Agent 执行引擎
+            <span class="badge">STATEGRAPH · 3 NODES</span>
+          </div>
+
+          <!-- Graph flow -->
+          <div class="flow-chain">
+            <div class="flow-node">START</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node">resume_entry</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node">oracle</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node" style="border-color: var(--c-text-main); background: var(--c-text-main); color: var(--c-canvas);">router</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node">action / terminal</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node">post_tool_router</div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-node">oracle / END</div>
+          </div>
+
+          <div class="node-grid grid-3" style="margin-top: 10px;">
+            <div class="node">
+              <div class="node-name">oracle 节点</div>
+              <div class="node-detail">模型决策入口<br />流式: reasoning / content / tool_calls</div>
+              <div class="sub-nodes">
+                <span class="sub-node">OpenAICompatible</span>
+                <span class="sub-node">LangChain</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">action 节点</div>
+              <div class="node-detail">普通工具执行<br />API / Skill / Script / MCP</div>
+              <div class="sub-nodes">
+                <span class="sub-node">ToolExecutor</span>
+                <span class="sub-node">result_envelope</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">terminal 节点</div>
+              <div class="node-detail">沙箱终端命令<br />Docker / bwrap / Win</div>
+              <div class="sub-nodes">
+                <span class="sub-node">fail-closed</span>
+                <span class="sub-node">idle TTL 15m</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="node-grid grid-3" style="margin-top: 8px;">
+            <div class="node">
+              <div class="node-name">DynamicToolLoader</div>
+              <div class="node-detail">工具注册唯一入口<br />build_runtime_toolset()</div>
+              <div class="sub-nodes">
+                <span class="sub-node">ApiToolBuilder</span>
+                <span class="sub-node">SkillToolBuilder</span>
+                <span class="sub-node">ScriptToolBuilder</span>
+                <span class="sub-node">MCPDiscovery</span>
+                <span class="sub-node">BuiltinTools</span>
+                <span class="sub-node">CardToolBuilder</span>
+                <span class="sub-node">ClientToolBuilder</span>
+                <span class="sub-node">TaskScheduler</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">ToolExecutor</div>
+              <div class="node-detail">工具执行核心<br />execute() → messages + events</div>
+              <div class="sub-nodes">
+                <span class="sub-node">_tools_by_name</span>
+                <span class="sub-node">cancel_lookup</span>
+                <span class="sub-node">runtime_logger</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">AgentState (TypedDict)</div>
+              <div class="node-detail">状态定义 · 图流转载体</div>
+              <div class="sub-nodes">
+                <span class="sub-node">messages [+add]</span>
+                <span class="sub-node">runtime_events [+add]</span>
+                <span class="sub-node">pending_forms</span>
+                <span class="sub-node">loaded_skills</span>
+                <span class="sub-node">runtime_context</span>
+                <span class="sub-node">client_tools</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow L4 → L5 -->
+      <div class="arrow-flow">
+        <svg width="24" height="20" viewBox="0 0 24 20">
+          <line x1="12" y1="0" x2="12" y2="14" stroke="#64748b" stroke-width="1.5" />
+          <polyline points="6,10 12,16 18,10" fill="none" stroke="#64748b" stroke-width="1.5" />
+        </svg>
+        <span class="arrow-label">Repository · 持久化读写</span>
+      </div>
+
+      <!-- Layer 5: Storage -->
+      <div class="layer">
+        <div class="layer-label">L5</div>
+        <div class="layer-inner">
+          <div class="layer-title">
+            Storage 层 · 持久化
+            <span class="badge">FILE / SQL DUAL MODE</span>
+          </div>
+          <div class="node-grid grid-3-5">
+            <div class="node">
+              <div class="node-name">FileRepoLayout</div>
+              <div class="node-detail">文件仓库 (JSON / JSONL)<br />tenant_id / user_id 隔离</div>
+              <div class="sub-nodes">
+                <span class="sub-node">account</span>
+                <span class="sub-node">agent_definition</span>
+                <span class="sub-node">context</span>
+                <span class="sub-node">registry</span>
+                <span class="sub-node">task</span>
+                <span class="sub-node">run_registry</span>
+                <span class="sub-node">memory_state</span>
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">SQL Provider</div>
+              <div class="node-detail">SQLAlchemy 2.x · 三层归属</div>
+              <div class="sub-nodes">
+                <span class="sub-node">MySQL 8.0/5.7</span>
+                <span class="sub-node">达梦 DM8</span>
+                <span class="sub-node">金仓 KingbaseES</span>
+              </div>
+              <div class="node-detail" style="margin-top: 4px;">
+                A: etrobot 既有表<br />
+                B: nexbot_* 专属表<br />
+                C: 文件/本地保留
+              </div>
+            </div>
+            <div class="node">
+              <div class="node-name">运行时日志</div>
+              <div class="node-detail">eclaw_logs/runtime/<br />tenant/user/thread/run.jsonl</div>
+              <div class="sub-nodes">
+                <span class="sub-node">request_received</span>
+                <span class="sub-node">oracle_invoke</span>
+                <span class="sub-node">tool_call_*</span>
+                <span class="sub-node">response_completed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-swatch legend-swatch--solid"></div>
+          <span>路由决策节点 / 关键组件</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch legend-swatch--outline"></div>
+          <span>功能节点 / 组件</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch legend-swatch--dashed"></div>
+          <span>图流转链路 (dashed)</span>
+        </div>
+        <div class="legend-item">
+          <svg width="20" height="16" viewBox="0 0 20 16">
+            <line x1="10" y1="0" x2="10" y2="10" stroke="#64748b" stroke-width="1.5" />
+            <polyline points="5,6 10,12 15,6" fill="none" stroke="#64748b" stroke-width="1.5" />
+          </svg>
+          <span>请求流向 (层间)</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

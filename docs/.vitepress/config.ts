@@ -22,7 +22,8 @@ export default defineConfig({
       { text: '团队协作', link: '/teamwork/' },
       { text: 'AI技术', link: '/ai/' },
       { text: 'Python', link: '/python/' },
-      { text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] }
+      { text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] },
+      { text: '公考备考', link: '/公考备考/' }
     ],
 
     // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
@@ -178,6 +179,90 @@ export default defineConfig({
                                     {
                                           "text": "概览",
                                           "link": "/ai/applications/"
+                                    },
+                                    {
+                                          "text": "工业互联网 / ERP Agent 工作台产品规划（生成式 UI 实践）",
+                                          "link": "/ai/applications/industrial-erp-agent-workbench-plan"
+                                    },
+                                    {
+                                          "text": "生产级 Agent 平台架构全景（FastAPI + LangGraph 实战解析）",
+                                          "link": "/ai/applications/nexbot-architecture-guide"
+                                    },
+                                    {
+                                          "text": "PPT Agent 设计思路解析：从需求调研到 SVG 全自动生成",
+                                          "link": "/ai/applications/ppt-agent-design-guide"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "AI 应用工程师学习路线",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/ai/learning-roadmap/"
+                                    },
+                                    {
+                                          "text": "Agent 框架专项学习指南",
+                                          "link": "/ai/learning-roadmap/agent-frameworks-guide"
+                                    },
+                                    {
+                                          "text": "AI 应用工程师三个月面试通关学习指南",
+                                          "link": "/ai/learning-roadmap/ai-engineer-3month-guide"
+                                    },
+                                    {
+                                          "text": "AI 面试题分类整理与答案详解（13 家公司真题）",
+                                          "link": "/ai/learning-roadmap/ai-interview-qa-guide"
+                                    },
+                                    {
+                                          "text": "01 岗位技能与要求拆解",
+                                          "link": "/ai/learning-roadmap/01-岗位技能与要求拆解"
+                                    },
+                                    {
+                                          "text": "02 从零准备周期评估",
+                                          "link": "/ai/learning-roadmap/02-从零准备周期评估"
+                                    },
+                                    {
+                                          "text": "03 36周学习路线",
+                                          "link": "/ai/learning-roadmap/03-36周学习路线"
+                                    },
+                                    {
+                                          "text": "04 核心技能学习手册",
+                                          "link": "/ai/learning-roadmap/04-核心技能学习手册"
+                                    },
+                                    {
+                                          "text": "05 项目实战路线",
+                                          "link": "/ai/learning-roadmap/05-项目实战路线"
+                                    },
+                                    {
+                                          "text": "06 学习资源与官方文档",
+                                          "link": "/ai/learning-roadmap/06-学习资源与官方文档"
+                                    },
+                                    {
+                                          "text": "07 面试与简历准备",
+                                          "link": "/ai/learning-roadmap/07-面试与简历准备"
+                                    },
+                                    {
+                                          "text": "08 每周检查清单",
+                                          "link": "/ai/learning-roadmap/08-每周检查清单"
+                                    },
+                                    {
+                                          "text": "09 36周逐周详细执行计划",
+                                          "link": "/ai/learning-roadmap/09-36周逐周详细执行计划"
+                                    },
+                                    {
+                                          "text": "每周学习计划",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "概览",
+                                                      "link": "/ai/learning-roadmap/weekly/"
+                                                },
+                                                {
+                                                      "text": "0608-0614 学习计划：环境搭建与 Python 基础",
+                                                      "link": "/ai/learning-roadmap/weekly/0608-0614学习计划"
+                                                }
+                                          ]
                                     }
                               ]
                         }
@@ -349,6 +434,25 @@ export default defineConfig({
                         {
                               "text": "Mac 上的 Git 仓库管理指南",
                               "link": "/mac/git-repository-management"
+                        }
+                  ]
+            }
+      ],
+      "/公考备考/": [
+            {
+                  "text": "公考备考",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/公考备考/"
+                        },
+                        {
+                              "text": "模块专项突破与课程匹配手册（江苏省考 B 类在职备考）",
+                              "link": "/公考备考/模块专项突破与课程匹配手册"
+                        },
+                        {
+                              "text": "江苏省考 B 类一战上岸备考方案（在职）",
+                              "link": "/公考备考/江苏省考B类一战上岸备考方案"
                         }
                   ]
             }

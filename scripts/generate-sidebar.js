@@ -23,13 +23,16 @@ const DISPLAY_NAMES = {
   skills: 'Skills 收集',
   tools: '实用 AI 工具',
   applications: 'AI 技术应用',
-  'scraping-guide': '爬虫指南'
+  'learning-roadmap': 'AI 应用工程师学习路线',
+  weekly: '每周学习计划',
+  'scraping-guide': '爬虫指南',
+  '公考备考': '公考备考'
 }
 
 const TOP_LEVEL_ORDER = ['javascript', 'react', 'vue', 'engineering', 'performance', 'teamwork', 'ai', 'python', 'environment', 'mac']
 const SECTION_ORDER = {
   teamwork: ['git'],
-  ai: ['skills', 'tools', 'applications'],
+  ai: ['skills', 'tools', 'applications', 'learning-roadmap'],
   python: ['scraping-guide']
 }
 
@@ -399,7 +402,8 @@ function updateConfigFile() {
     `{ text: '团队协作', link: '/teamwork/' }`,
     `{ text: 'AI技术', link: '/ai/' }`,
     `{ text: 'Python', link: '/python/' }`,
-    `{ text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] }`
+    `{ text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] }`,
+    `{ text: '公考备考', link: '/公考备考/' }`
   ]
 
   const navRange = findArrayRange(config, 'nav')
