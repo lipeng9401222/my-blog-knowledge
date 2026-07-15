@@ -17,16 +17,12 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '开发资源', link: '/#dev-resources' },
-      { text: '标签', link: '/tags/' },
-      { text: 'JavaScript', link: '/javascript/' },
-      { text: 'React', link: '/react/' },
-      { text: 'Vue', link: '/vue/' },
-      { text: '工程化', link: '/engineering/' },
-      { text: '性能优化', link: '/performance/' },
+      { text: '前端技术', items: [{ text: 'JavaScript', link: '/javascript/' }, { text: 'React', link: '/react/' }, { text: 'Vue', link: '/vue/' }] },
+      { text: '工程与性能', items: [{ text: '工程化', link: '/engineering/' }, { text: '性能优化', link: '/performance/' }] },
       { text: '团队协作', link: '/teamwork/' },
       { text: 'AI技术', link: '/ai/' },
-      { text: '环境安装', link: '/environment/' },
-      { text: 'Mac', link: '/mac/' }
+      { text: 'Python', link: '/python/' },
+      { text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] }
     ],
 
     // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
@@ -168,6 +164,10 @@ export default defineConfig({
                                     {
                                           "text": "概览",
                                           "link": "/ai/tools/"
+                                    },
+                                    {
+                                          "text": "Claude Code 完整操作指南（macOS 版）",
+                                          "link": "/ai/tools/claude-code-complete-guide-macos"
                                     }
                               ]
                         },
@@ -178,6 +178,41 @@ export default defineConfig({
                                     {
                                           "text": "概览",
                                           "link": "/ai/applications/"
+                                    }
+                              ]
+                        }
+                  ]
+            }
+      ],
+      "/python/": [
+            {
+                  "text": "Python",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/python/"
+                        },
+                        {
+                              "text": "爬虫指南",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/python/scraping-guide/"
+                                    },
+                                    {
+                                          "text": "抓取任意在线文档站点并打包成 AI Skill 的完整指南",
+                                          "link": "/python/scraping-guide/scraping-complete-guide"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Scripts",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "图片缩放与压缩脚本说明",
+                                          "link": "/python/scripts/process_image"
                                     }
                               ]
                         }
@@ -314,6 +349,98 @@ export default defineConfig({
                         {
                               "text": "Mac 上的 Git 仓库管理指南",
                               "link": "/mac/git-repository-management"
+                        }
+                  ]
+            }
+      ],
+      "/实操指南/": [
+            {
+                  "text": "实操指南",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/实操指南/"
+                        },
+                        {
+                              "text": "访问系统",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/实操指南/访问系统/"
+                                    },
+                                    {
+                                          "text": "本地访问与登录",
+                                          "link": "/实操指南/访问系统/本地访问与登录"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "开发环境启动",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/实操指南/开发环境启动/"
+                                    },
+                                    {
+                                          "text": "前端：Vue 组件化（pnpm workspace + vue-web）启动",
+                                          "link": "/实操指南/开发环境启动/前端-vue组件化启动"
+                                    },
+                                    {
+                                          "text": "后端：Tomcat 插件（war）启动",
+                                          "link": "/实操指南/开发环境启动/后端-tomcat插件启动"
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "准备环境",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/实操指南/准备环境/"
+                                    },
+                                    {
+                                          "text": "01-确认 MySQL 服务与版本",
+                                          "link": "/实操指南/准备环境/01-确认MySQL服务与版本"
+                                    },
+                                    {
+                                          "text": "02-创建数据库与账号权限",
+                                          "link": "/实操指南/准备环境/02-创建数据库与账号权限"
+                                    },
+                                    {
+                                          "text": "03-连接验证（DBeaver + 命令行）",
+                                          "link": "/实操指南/准备环境/03-连接验证"
+                                    }
+                              ]
+                        }
+                  ]
+            }
+      ],
+      "/原生APP/": [
+            {
+                  "text": "原生APP",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/原生APP/"
+                        },
+                        {
+                              "text": "Android App 上架及账号申请详细指南",
+                              "link": "/原生APP/Android-App上架通用指南"
+                        },
+                        {
+                              "text": "Android 多应用市场上架手册（OPPO / 小米 / VIVO / 荣耀 / 一加 / iQOO 等）",
+                              "link": "/原生APP/Android多市场上架手册"
+                        },
+                        {
+                              "text": "uni-app 一键发布到应用市场完整操作指南",
+                              "link": "/原生APP/uniapp一键发布指南"
+                        },
+                        {
+                              "text": "华为应用市场（AppGallery）上架指南",
+                              "link": "/原生APP/华为AppGallery上架指南"
                         }
                   ]
             }

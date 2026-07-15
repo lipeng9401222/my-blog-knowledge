@@ -15,6 +15,7 @@ comment: false
 
 ## 推荐阅读
 
+- [Claude Code 完整操作指南（macOS 版）](/ai/tools/claude-code-complete-guide-macos)
 - [AI Coding Skills 体系设计：从 Prompt、上下文到可复用工作流](/ai/skills/ai-coding-skills-system-design)
 
 ## 阅读路径建议

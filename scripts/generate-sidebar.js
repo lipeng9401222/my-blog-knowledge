@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const docsDir = path.join(__dirname, '..', 'docs')
 
-const IGNORE_DIRS = ['.vitepress', 'public', 'node_modules', '.git', 'tags']
+const IGNORE_DIRS = ['.vitepress', 'public', 'node_modules', '.git', 'tags', 'scripts']
 
 const DISPLAY_NAMES = {
   javascript: 'JavaScript',
@@ -16,18 +16,21 @@ const DISPLAY_NAMES = {
   performance: '性能优化',
   teamwork: '团队协作',
   ai: 'AI技术',
+  python: 'Python',
   environment: '环境安装',
   mac: 'Mac',
   git: 'Git',
   skills: 'Skills 收集',
   tools: '实用 AI 工具',
-  applications: 'AI 技术应用'
+  applications: 'AI 技术应用',
+  'scraping-guide': '爬虫指南'
 }
 
-const TOP_LEVEL_ORDER = ['javascript', 'react', 'vue', 'engineering', 'performance', 'teamwork', 'ai', 'environment', 'mac']
+const TOP_LEVEL_ORDER = ['javascript', 'react', 'vue', 'engineering', 'performance', 'teamwork', 'ai', 'python', 'environment', 'mac']
 const SECTION_ORDER = {
   teamwork: ['git'],
-  ai: ['skills', 'tools', 'applications']
+  ai: ['skills', 'tools', 'applications'],
+  python: ['scraping-guide']
 }
 
 function getDisplayName(name) {
@@ -391,8 +394,12 @@ function updateConfigFile() {
   const navItems = [
     `{ text: '首页', link: '/' }`,
     `{ text: '开发资源', link: '/#dev-resources' }`,
-    `{ text: '标签', link: '/tags/' }`,
-    ...categories.map(category => `{ text: '${getDisplayName(category)}', link: '/${category}/' }`)
+    `{ text: '前端技术', items: [{ text: 'JavaScript', link: '/javascript/' }, { text: 'React', link: '/react/' }, { text: 'Vue', link: '/vue/' }] }`,
+    `{ text: '工程与性能', items: [{ text: '工程化', link: '/engineering/' }, { text: '性能优化', link: '/performance/' }] }`,
+    `{ text: '团队协作', link: '/teamwork/' }`,
+    `{ text: 'AI技术', link: '/ai/' }`,
+    `{ text: 'Python', link: '/python/' }`,
+    `{ text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] }`
   ]
 
   const navRange = findArrayRange(config, 'nav')

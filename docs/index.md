@@ -5,7 +5,7 @@ title: 前端知识库
 hero:
   name: "前端知识库"
   text: "前端、协作与 AI 的系统化沉淀"
-  tagline: 聚合前端工程、团队协作与 AI 技术内容，内置全文搜索、标签云与开发资源导航。
+  tagline: 聚合前端工程、团队协作、AI 技术与 Python 爬虫内容，内置全文搜索与开发资源导航。
   actions:
     - theme: brand
       text: 开始阅读 →
@@ -44,6 +44,16 @@ features:
     title: AI 技术
     details: Skills 收集、AI 工具推荐、AI 技术应用与实践方法论
     link: /ai/
+    linkText: 查看专题
+  - icon: 🐍
+    title: Python
+    details: 爬虫抓取、文档站点离线打包、AI Skill 生成方法论与完整脚本
+    link: /python/
+    linkText: 查看专题
+  - icon: 📱
+    title: 原生APP
+    details: Android 应用打包、签名、各大应用市场上架流程与隐私合规指南
+    link: /原生APP/
     linkText: 查看专题
 ---
 
