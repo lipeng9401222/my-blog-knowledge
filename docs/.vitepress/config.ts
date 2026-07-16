@@ -203,6 +203,14 @@ export default defineConfig({
                                           "link": "/ai/learning-roadmap/"
                                     },
                                     {
+                                          "text": "Agent 框架补充篇：Coze / Semantic Kernel / MCP / Multi-Agent",
+                                          "link": "/ai/learning-roadmap/agent-frameworks-supplement"
+                                    },
+                                    {
+                                          "text": "RAG 知识库搭建专项指南",
+                                          "link": "/ai/learning-roadmap/rag-knowledge-base-guide"
+                                    },
+                                    {
                                           "text": "Agent 框架专项学习指南",
                                           "link": "/ai/learning-roadmap/agent-frameworks-guide"
                                     },

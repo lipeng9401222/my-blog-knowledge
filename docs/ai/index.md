@@ -19,6 +19,7 @@ comment: false
 - [Claude Code 完整操作指南（macOS 版）](/ai/tools/claude-code-complete-guide-macos)
 - [AI Coding Skills 体系设计：从 Prompt、上下文到可复用工作流](/ai/skills/ai-coding-skills-system-design)
 - [PPT Agent 设计思路解析：从需求调研到 SVG 全自动生成](/ai/applications/ppt-agent-design-guide)
+- [RAG 知识库搭建专项指南：RAGFlow 一键部署与 LangChain+Milvus 自建](/ai/learning-roadmap/rag-knowledge-base-guide)
 - [AI应用工程师（工业数据方向）学习文档总览](/ai/learning-roadmap/)
 - [0608-0614 学习计划：环境搭建与 Python 基础](/ai/learning-roadmap/weekly/0608-0614学习计划)
 

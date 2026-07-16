@@ -56,6 +56,8 @@ comment: false
 |---|---|---|
 | [三个月面试通关学习指南](/ai/learning-roadmap/ai-engineer-3month-guide) | 3 个月速成版路线，理论与动手实验并重 | 时间紧、想先跑通一条完整链路时 |
 | [Agent 框架专项学习指南](/ai/learning-roadmap/agent-frameworks-guide) | LangChain/LangGraph/LlamaIndex/Dify/n8n 等框架对比与选型 | 学到大模型应用、Agent 阶段 |
+| [Agent 框架补充篇：Coze/Semantic Kernel/MCP/Multi-Agent](/ai/learning-roadmap/agent-frameworks-supplement) | 对照 BI 报告工程能力雷达补齐 Coze、SK、MCP、Multi-Agent、Tool Calling | 学完 Agent 框架专项后 |
+| [RAG 知识库搭建专项指南](/ai/learning-roadmap/rag-knowledge-base-guide) | RAGFlow 一键部署与 LangChain+Milvus 自建两条路线、选型与代码骨架 | 学到 RAG 知识库（第 7 周）时 |
 | [AI 面试题分类整理与答案详解](/ai/learning-roadmap/ai-interview-qa-guide) | 13 家公司真实面试题，按主题归类给答案 | 面试前集中突破 |
 
 配套的生产级项目参照见 [AI 技术应用](/ai/applications/) 板块中的 Nexbot 架构全景与工业互联网 ERP Agent 工作台产品规划。
