@@ -10,6 +10,7 @@ comment: false
 ## 专题目录
 
 - [Skills 收集](/ai/skills/)
+- [Skill / MCP 工具合集](/ai/skills-mcp/)
 - [实用 AI 工具](/ai/tools/)
 - [AI 技术应用](/ai/applications/)
 - [AI 应用工程师学习路线](/ai/learning-roadmap/)

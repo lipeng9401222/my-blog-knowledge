@@ -167,6 +167,14 @@ export default defineConfig({
                                           "link": "/ai/tools/"
                                     },
                                     {
+                                          "text": "WeKnora 阿里云 ECS + 通义千问部署全流程指南",
+                                          "link": "/ai/tools/weknora-aliyun-ecs-qwen-deploy-guide"
+                                    },
+                                    {
+                                          "text": "WeKnora 免费云服务器部署完整指南（Oracle Cloud）",
+                                          "link": "/ai/tools/weknora-oracle-cloud-deploy-guide"
+                                    },
+                                    {
                                           "text": "Claude Code 完整操作指南（macOS 版）",
                                           "link": "/ai/tools/claude-code-complete-guide-macos"
                                     }
@@ -271,6 +279,24 @@ export default defineConfig({
                                                       "link": "/ai/learning-roadmap/weekly/0608-0614学习计划"
                                                 }
                                           ]
+                                    }
+                              ]
+                        },
+                        {
+                              "text": "Skills-mcp",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "概览",
+                                          "link": "/ai/skills-mcp/"
+                                    },
+                                    {
+                                          "text": "WorkBuddy（CodeBuddy）公开市场 Skills 完整清单解析",
+                                          "link": "/ai/skills-mcp/workbuddy-skills-catalog"
+                                    },
+                                    {
+                                          "text": "AI Agent 扩展能力（Skill / MCP）精选合集",
+                                          "link": "/ai/skills-mcp/skills-mcp-collection"
                                     }
                               ]
                         }
@@ -438,6 +464,10 @@ export default defineConfig({
                         {
                               "text": "概览",
                               "link": "/mac/"
+                        },
+                        {
+                              "text": "Mole 使用手册（macOS 系统清理与优化工具）",
+                              "link": "/mac/mole-usage-guide"
                         },
                         {
                               "text": "Mac 上的 Git 仓库管理指南",
