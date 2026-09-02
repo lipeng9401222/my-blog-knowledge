@@ -24,7 +24,8 @@ export default defineConfig({
       { text: 'Python', link: '/python/' },
       { text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] },
       { text: '公考备考', link: '/公考备考/' },
-      { text: '江苏省考备考', link: '/江苏省考备考/' }
+      { text: '江苏省考备考', link: '/江苏省考备考/' },
+      { text: '威海行程书', link: '/weihai-trip-2026/', target: '_blank', rel: 'noopener' }
     ],
 
     // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
