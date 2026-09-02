@@ -23,7 +23,8 @@ export default defineConfig({
       { text: 'AI技术', link: '/ai/' },
       { text: 'Python', link: '/python/' },
       { text: '开发环境', items: [{ text: '环境安装', link: '/environment/' }, { text: '实操指南', link: '/实操指南/' }, { text: 'Mac', link: '/mac/' }] },
-      { text: '公考备考', link: '/公考备考/' }
+      { text: '公考备考', link: '/公考备考/' },
+      { text: '江苏省考备考', link: '/江苏省考备考/' }
     ],
 
     // 侧边栏（由 generate-sidebar.js 自动生成，请勿手动修改）
@@ -466,6 +467,10 @@ export default defineConfig({
                               "link": "/mac/"
                         },
                         {
+                              "text": "Mole 分阶段清理执行清单",
+                              "link": "/mac/mole-cleanup-runbook"
+                        },
+                        {
                               "text": "Mole 使用手册（macOS 系统清理与优化工具）",
                               "link": "/mac/mole-usage-guide"
                         },
@@ -491,6 +496,163 @@ export default defineConfig({
                         {
                               "text": "江苏省考 B 类一战上岸备考方案（在职）",
                               "link": "/公考备考/江苏省考B类一战上岸备考方案"
+                        }
+                  ]
+            }
+      ],
+      "/江苏省考备考/": [
+            {
+                  "text": "江苏省考备考",
+                  "items": [
+                        {
+                              "text": "概览",
+                              "link": "/江苏省考备考/"
+                        },
+                        {
+                              "text": "资料分析",
+                              "collapsed": false,
+                              "items": [
+                                    {
+                                          "text": "02-数据处理与运算分析",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第二节 数据处理与运算分析",
+                                                      "link": "/江苏省考备考/资料分析/02-数据处理与运算分析/数据处理与运算分析"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "03-放缩运算",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第三节 放缩运算（加、减、除、乘）",
+                                                      "link": "/江苏省考备考/资料分析/03-放缩运算/放缩运算"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "04-快速估算",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第四节 快速估算（化除为乘 & 份数思想）",
+                                                      "link": "/江苏省考备考/资料分析/04-快速估算/快速估算"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "05-增速的累积与拆分",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第五节 增速的累积与拆分",
+                                                      "link": "/江苏省考备考/资料分析/05-增速的累积与拆分/增速的累积与拆分"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "06-拉平增长率",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第六节 拉平增长率（含第四课：平均数增长率）",
+                                                      "link": "/江苏省考备考/资料分析/06-拉平增长率/拉平增长率"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "07-分式混合",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第七节 分式混合",
+                                                      "link": "/江苏省考备考/资料分析/07-分式混合/分式混合"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "08-分式比较大小",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第八课 · 分式比较大小 —— 学习笔记",
+                                                      "link": "/江苏省考备考/资料分析/08-分式比较大小/分式比较大小-学习笔记"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "09-比重特殊问题",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "资料分析 · 第九课 比重特殊问题",
+                                                      "link": "/江苏省考备考/资料分析/09-比重特殊问题/比重特殊问题-学习笔记"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "10-年均变化问题",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第十节 年均变化问题（年均增量 & 年均增长率）",
+                                                      "link": "/江苏省考备考/资料分析/10-年均变化问题/年均变化问题"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "11-增长贡献率与拉动增长率",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第十一节 增长贡献率与拉动增长率",
+                                                      "link": "/江苏省考备考/资料分析/11-增长贡献率与拉动增长率/增长贡献率与拉动增长率"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "12-容斥问题",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "第十二课 · 容斥问题",
+                                                      "link": "/江苏省考备考/资料分析/12-容斥问题/容斥问题-课程笔记"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "13-假设代入",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "13 假设代入",
+                                                      "link": "/江苏省考备考/资料分析/13-假设代入/假设代入-课程笔记"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "14-易错点总结",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "14 易错点总结（常见\"坑位\"）",
+                                                      "link": "/江苏省考备考/资料分析/14-易错点总结/易错点总结-课程笔记"
+                                                }
+                                          ]
+                                    },
+                                    {
+                                          "text": "总笔记",
+                                          "collapsed": false,
+                                          "items": [
+                                                {
+                                                      "text": "资料分析总笔记（小P理论体系·完整版）",
+                                                      "link": "/江苏省考备考/资料分析/总笔记/资料分析总笔记"
+                                                }
+                                          ]
+                                    }
+                              ]
                         }
                   ]
             }
